@@ -1,12 +1,22 @@
 # Site settings
-title:
-email:
+title: Jason Anton
+email: jason@stoopid.email
 description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "https://www.jasonanton.com" # the base hostname & protocol for your site
 
-twitter_username:
-github_username:
+linkedin_username: stoopidjson
+github_username: stoopidJSON
+
+analytics: UA-83979019-1
+
+compress-site: yes
+
+encoding: "utf-8"
+compress_html: # - http://jch.penibelst.de/
+  clippings: all
+  ignore:
+    envs: development
 
 # Build settings
 markdown: kramdown
