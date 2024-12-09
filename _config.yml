@@ -1,9 +1,10 @@
 # Site settings
 title: Jason Anton
-email: jason@stoopid.email
-description: > # this means to ignore newlines until "baseurl:"
+email: jason@conversadocs.com
+description: Jason offers top-notch software development consulting specializing in AI & ML operations and development. Elevate your projects with expert guidance. # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://www.jasonanton.com" # the base hostname & protocol for your site
+tagline: The Digital Janitor.
 
 linkedin_username: stoopidjson
 github_username: stoopidJSON
@@ -20,3 +21,10 @@ compress_html: # - http://jch.penibelst.de/
 
 # Build settings
 markdown: kramdown
+
+social:
+  name: Ben Balter
+  links:
+    - https://www.linkedin.com/in/stoopidjson
+    - https://github.com/stoopidJSON
+    - https://bsky.app/profile/stoopidjson.bsky.social
