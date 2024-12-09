@@ -285,6 +285,34 @@ header {
     }
 }
 
+.call-to-action .testimonials {
+    text-align: center !important;
+    font-style: italic !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.call-to-action .testimonials blockquote {
+    flex: 1 1 calc(100% / 3 - 20px);
+    margin: 10px;
+    max-width: 100%;
+    border-left: none
+}
+
+@media (max-width: 767px) {
+    .call-to-action .testimonials blockquote {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+.call-to-action .testimonials blockquote span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgba( $theme-primary, .6 );
+}
+
 // Bootstrap Overrides
 .text-primary {
     color: $theme-primary;
