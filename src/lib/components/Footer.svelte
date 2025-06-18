@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Mail, Phone, MapPin, Linkedin, Instagram, Github } from 'lucide-svelte';
+  import { Mail, Phone, MapPin, Linkedin, Instagram, Github, Calculator } from 'lucide-svelte';
   import type { NavigationItem, SocialLink } from '$types';
   
   const currentYear = new Date().getFullYear();
@@ -15,7 +15,7 @@
       { name: 'Digital Transformation', href: '/services/digital-transformation' },
       { name: 'AI/ML Implementation', href: '/services/ai-ml-implementation' },
       { name: 'Fractional CTO', href: '/services/fractional-cto' },
-      { name: 'Technical Due Diligence', href: '/services/technical-due-diligence' },
+      { name: 'See All...', href: '/services' },
     ],
     company: [
       { name: 'About', href: '/about' },
@@ -24,10 +24,8 @@
       { name: 'Contact', href: 'https://calendly.com/jason-conversadocs/30min' },
     ],
     resources: [
-      { name: 'ROI Calculator', href: '/resources/roi-calculator' },
-      { name: 'Technical Assessment', href: '/resources/assessment' },
-      { name: 'Implementation Guide', href: '/resources/implementation-guide' },
-      { name: 'Industry Reports', href: '/resources/reports' },
+      { name: 'ROI Calculators', href: '/resources/roi-calculator' },
+      { name: 'ConversaDocs', href: 'https://conversadocs.ai' },
     ],
   };
   
@@ -98,7 +96,7 @@
         
         <!-- Company -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <h3 class="text-lg font-semibold mb-4">Information</h3>
           <ul class="space-y-3">
             {#each footerNavigation.company as item}
               <li>
@@ -119,12 +117,41 @@
           <ul class="space-y-3">
             {#each footerNavigation.resources as item}
               <li>
-                <a 
-                  href={item.href} 
-                  class="text-neutral-300 hover:text-primary-400 transition-colors duration-200"
-                >
-                  {item.name}
-                </a>
+                {#if item.href.startsWith('http')}
+                  <a 
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' ? 'flex items-center space-x-2' : ''}"
+                  >
+                    {#if item.name === 'ConversaDocs'}
+                      <img 
+                        src="/conversadocs.png" 
+                        alt="ConversaDocs logo" 
+                        class="w-5 h-5"
+                      />
+                    {:else if item.name === 'ROI Calculators'}
+                      <Calculator class="h-4 w-4 text-primary-400" />
+                    {/if}
+                    <span>{item.name}</span>
+                  </a>
+                {:else}
+                  <a 
+                    href={item.href} 
+                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' ? 'flex items-center space-x-2' : ''}"
+                  >
+                    {#if item.name === 'ConversaDocs'}
+                      <img 
+                        src="/conversadocs.png" 
+                        alt="ConversaDocs logo" 
+                        class="w-5 h-5"
+                      />
+                    {:else if item.name === 'ROI Calculators'}
+                      <Calculator class="h-4 w-4 text-primary-400" />
+                    {/if}
+                    <span>{item.name}</span>
+                  </a>
+                {/if}
               </li>
             {/each}
           </ul>

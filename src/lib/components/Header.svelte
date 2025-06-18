@@ -28,14 +28,17 @@
     <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-2 text-xl font-bold text-neutral-900 hover:text-primary-600 transition-colors">
-          <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <!-- Broom handle -->
-              <rect x="10.5" y="2" width="1.5" height="14" />
-              <!-- Broom head/bristles -->
-              <path d="M8 16l1-1h4l1 1v6l-1.5-1.5L12 22l-0.5-1.5L10 22l-1-1v-6z"/>
-              <path d="M8.5 17v4M9.5 17v4.5M10.5 17v4M11.5 17v4.5M12.5 17v4M13.5 17v4.5M14.5 17v4"/>
+<a href="/" class="flex items-center space-x-2 text-xl font-bold text-neutral-900 hover:text-primary-600 transition-colors">
+          <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <!-- Opening bracket < -->
+              <path stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M7 6l-3 6 3 6"/>
+              <!-- Closing bracket > -->
+              <path stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M17 6l3 6-3 6"/>
+              <!-- Broom handle (diagonal line representing /) -->
+              <path stroke-width="2.5" stroke-linecap="round" d="M10 8l4 8"/>
+              <!-- Very subtle broom bristles - just a small thickening at the bottom -->
+              <path stroke-width="3.5" stroke-linecap="round" d="M13.8 15.5l0.4 0.8"/>
             </svg>
           </div>
           <span class="hidden sm:block">The Digital Janitor</span>

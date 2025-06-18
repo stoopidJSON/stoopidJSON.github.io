@@ -11,14 +11,12 @@ export const load: LayoutLoad = async ({ url, fetch }) => {
       openGraph: {
         title: 'Technical Consulting Excellence',
         description: 'Digital Transformation Orchestrator with 15+ years of cross-functional expertise',
-        image: '/og-image.jpg',
         type: 'website'
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Technical Consulting Excellence',
         description: 'Digital Transformation Orchestrator with 15+ years of cross-functional expertise',
-        image: '/og-image.jpg'
       }
     }
   };

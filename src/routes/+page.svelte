@@ -354,10 +354,6 @@
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>
-      
-      <Button href="/resources/assessment" variant="secondary" size="lg">
-        Take Technical Assessment
-      </Button>
     </div>
   </div>
 </section>
