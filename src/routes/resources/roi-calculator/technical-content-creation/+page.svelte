@@ -171,8 +171,6 @@
     <nav class="flex items-center space-x-2 text-sm text-neutral-600">
       <a href="/" class="hover:text-primary-600">Home</a>
       <span>/</span>
-      <a href="/resources" class="hover:text-primary-600">Resources</a>
-      <span>/</span>
       <a href="/resources/roi-calculator" class="hover:text-primary-600">ROI Calculator</a>
       <span>/</span>
       <span class="text-neutral-900">Technical Content</span>
