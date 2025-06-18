@@ -169,13 +169,13 @@
           {/if}
           
           <div class="border-t pt-6">
-            <h4 class="font-semibold text-neutral-900 mb-4">Ready to Get Started?</h4>
+            <h4 class="font-semibold text-neutral-900 mb-4">Curious About ROI?</h4>
             <p class="text-sm text-neutral-600 mb-6">
-              Schedule a free consultation to discuss your specific needs and how I can help.
+              Use the ROI Calculator to see your potential return on investment for this service.
             </p>
             
-            <Button href="https://calendly.com/jason-conversadocs/30min" variant="primary" class="w-full">
-              Schedule Consultation
+            <Button href="/resources/roi-calculator/{service.fields.slug}" variant="primary" class="w-full">
+              ROI Calculator
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
           </div>

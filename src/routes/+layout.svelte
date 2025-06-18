@@ -16,13 +16,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Technical Consulting Excellence" />
   <meta property="og:description" content="Digital Transformation Orchestrator with 15+ years of cross-functional expertise" />
-  <meta property="og:image" content="/og-image.jpg" />
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Technical Consulting Excellence" />
   <meta name="twitter:description" content="Digital Transformation Orchestrator with 15+ years of cross-functional expertise" />
-  <meta name="twitter:image" content="/og-image.jpg" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
