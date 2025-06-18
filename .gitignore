@@ -1,2 +1,22 @@
-_site/
-.sass-cache/
+# Node modules
+node_modules
+
+# Sveltekit build directory
+.svelte-kit
+
+# Local environment variables
+.env
+
+# Vite cache
+.vite
+
+# VS Code settings
+.vscode
+
+# Build artifacts
+build
+dist
+out
+
+# npm debug logs
+npm-debug.log*

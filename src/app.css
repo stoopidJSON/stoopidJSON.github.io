@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}
+
+@layer components {
+  /* Button components for consistent CTAs */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-600 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-700 bg-primary-50 border border-primary-200 rounded-lg shadow-sm hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+  }
+  
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-accent-600 border border-transparent rounded-lg shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 transition-colors duration-200;
+  }
+  
+  /* Section padding for consistent spacing */
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  /* Container for consistent max-width */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Gradient backgrounds for modern appeal */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary-600 to-primary-800;
+  }
+  
+  .gradient-neutral {
+    @apply bg-gradient-to-br from-neutral-50 to-neutral-100;
+  }
+  
+  /* Card component for consistent styling */
+  .card {
+    @apply bg-white rounded-xl shadow-lg border border-neutral-200 hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  /* Text gradients for headings */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  }
+  
+  /* Focus styles for accessibility */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities for specific use cases */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
