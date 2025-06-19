@@ -21,11 +21,12 @@
       { name: 'About', href: '/about' },
       { name: 'Case Studies', href: '/case-studies' },
       { name: 'Insights', href: '/insights' },
-      { name: 'Contact', href: 'https://calendly.com/jason-conversadocs/30min' },
+      { name: 'Contact', href: 'https://calendly.com/stoopidjson/technical-assessment' },
     ],
     resources: [
       { name: 'ROI Calculators', href: '/resources/roi-calculator' },
       { name: 'ConversaDocs', href: 'https://conversadocs.ai' },
+      { name: 'Stoopid Website', href: 'https://stoopid.website' },
     ],
   };
   
@@ -122,7 +123,7 @@
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' ? 'flex items-center space-x-2' : ''}"
+                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' || item.name === 'Stoopid Website' ? 'flex items-center space-x-2' : ''}"
                   >
                     {#if item.name === 'ConversaDocs'}
                       <img 
@@ -132,13 +133,19 @@
                       />
                     {:else if item.name === 'ROI Calculators'}
                       <Calculator class="h-4 w-4 text-primary-400" />
+                    {:else if item.name === 'Stoopid Website'}
+                      <img 
+                        src="/stoopid.png" 
+                        alt="Stoopid logo" 
+                        class="w-5 h-5"
+                      />
                     {/if}
                     <span>{item.name}</span>
                   </a>
                 {:else}
                   <a 
                     href={item.href} 
-                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' ? 'flex items-center space-x-2' : ''}"
+                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' || item.name === 'Stoopid Website' ? 'flex items-center space-x-2' : ''}"
                   >
                     {#if item.name === 'ConversaDocs'}
                       <img 
@@ -148,6 +155,12 @@
                       />
                     {:else if item.name === 'ROI Calculators'}
                       <Calculator class="h-4 w-4 text-primary-400" />
+                    {:else if item.name === 'Stoopid Website'}
+                      <img 
+                        src="/stoopid.png" 
+                        alt="Stoopid logo" 
+                        class="w-5 h-5"
+                      />
                     {/if}
                     <span>{item.name}</span>
                   </a>

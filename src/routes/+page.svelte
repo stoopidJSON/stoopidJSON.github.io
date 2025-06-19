@@ -14,7 +14,7 @@
     subtitle: "15+ Years of Cross-Functional Technical Expertise", 
     description: "I help businesses and governments navigate complex technical challenges with end-to-end solutions. From AI implementation to fractional CTO services, get the strategic guidance that bridges business goals with technical excellence.",
     ctaText: "Get Your Free Technical Assessment",
-    ctaLink: "https://calendly.com/jason-conversadocs/30min"
+    ctaLink: "https://calendly.com/stoopidjson/technical-assessment"
   };
   
   // Use Contentful data or fallback
@@ -350,7 +350,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>

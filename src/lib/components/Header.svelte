@@ -62,7 +62,7 @@
         
         <!-- CTA Button -->
         <a 
-          href="https://calendly.com/jason-conversadocs/30min" 
+          href="https://calendly.com/stoopidjson/technical-assessment" 
           class="btn-primary ml-4"
         >
           Get Started
@@ -108,7 +108,7 @@
           
           <div class="pt-4 pb-2">
             <a 
-              href="https://calendly.com/jason-conversadocs/30min" 
+              href="https://calendly.com/stoopidjson/technical-assessment" 
               class="btn-primary w-full justify-center"
               on:click={closeMobileMenu}
             >
