@@ -441,7 +441,7 @@
               Download Detailed Report
             </Button>
             
-            <Button href="https://calendly.com/jason-conversadocs/30min" variant="primary" class="w-full">
+            <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="primary" class="w-full">
               Schedule Consultation
             </Button>
           </div>
@@ -560,7 +560,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Assessment
       </Button>
       

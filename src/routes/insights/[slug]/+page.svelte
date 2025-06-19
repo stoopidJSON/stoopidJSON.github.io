@@ -221,7 +221,7 @@
               Let's discuss how these insights apply to your specific challenges.
             </p>
             
-            <Button href="https://calendly.com/jason-conversadocs/30min" variant="primary" class="w-full mb-3">
+            <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="primary" class="w-full mb-3">
               Schedule Consultation
               <ArrowRight class="ml-2 h-4 w-4" />
             </Button>
@@ -297,7 +297,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>

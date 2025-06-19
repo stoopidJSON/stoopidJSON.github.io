@@ -389,7 +389,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>

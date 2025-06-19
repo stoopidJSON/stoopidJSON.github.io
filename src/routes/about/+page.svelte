@@ -10,24 +10,35 @@
 </svelte:head>
 
 <!-- Hero Section -->
-<section class="section-padding bg-white">
-  <div class="container-custom">
+<section class="relative section-padding overflow-hidden">
+  <!-- Background Image with Gradient Overlay -->
+  <div class="absolute inset-0">
+    <!-- Replace 'your-family-photo.jpg' with the actual path to your image -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/jason-family-walking.jpeg');"></div>
+    <!-- Gradient overlay for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-br from-neutral-900/70 via-neutral-800/60 to-neutral-900/80"></div>
+    <!-- Additional overlay for better text contrast -->
+    <div class="absolute inset-0 bg-black/20"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="relative container-custom">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
+      <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg">
         <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
           <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 6.343a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464a1 1 0 10-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"/>
         </svg>
       </div>
       
-      <h1 class="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
         Hi, I'm Jason Anton
       </h1>
       
-      <p class="text-xl md:text-2xl text-neutral-600 mb-8">
+      <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow">
         Most consultants specialize. I clean up digital messes.
       </p>
       
-      <p class="text-lg text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-lg text-white/85 max-w-3xl mx-auto leading-relaxed drop-shadow">
         For 15+ years, I've been the person organizations call when their technology isn't working, their systems are failing, or they need someone who can build what others say is impossible. They call me "The Digital Janitor" because I'll fix, clean, or build whatever needs doing.
       </p>
     </div>
@@ -56,7 +67,7 @@
         </p>
         
         <p class="leading-relaxed">
-          Today, my first-born is a D1 lacrosse player at Wofford College studying to become a neurosurgeon. That journey from homelessness to helping her achieve her dreams taught me that impossible is just a starting point...my youngest wants to be an astronaut, pit-fighter, or tattoo artist ¯\_(ツ)_/¯
+          Today, my first-born is a D1 lacrosse player at Wofford College studying medicine. That journey from homelessness to helping her achieve her dreams taught me that impossible is just a starting point...also my youngest wants to be an astronaut, pit-fighter, or tattoo artist ¯\_(ツ)_/¯
         </p>
       </div>
     </div>
@@ -291,7 +302,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>

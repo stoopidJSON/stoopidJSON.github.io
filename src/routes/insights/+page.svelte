@@ -154,7 +154,7 @@
         <BookOpen class="w-16 h-16 text-neutral-400 mx-auto mb-4" />
         <h3 class="text-xl font-semibold text-neutral-600 mb-2">Insights Coming Soon</h3>
         <p class="text-neutral-500 mb-8">I'm currently writing insights based on my 15+ years of technical experience. Check back soon for thought leadership content.</p>
-        <Button href="https://calendly.com/jason-conversadocs/30min" variant="primary">
+        <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="primary">
           Schedule a Conversation Instead
           <ArrowRight class="ml-2 h-4 w-4" />
         </Button>
@@ -218,7 +218,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="accent" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
         Schedule Free Consultation
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>

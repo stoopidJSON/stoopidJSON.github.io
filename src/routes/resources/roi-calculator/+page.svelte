@@ -253,7 +253,7 @@
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="secondary" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="secondary" size="lg">
         Schedule Consultation
       </Button>
     </div>

@@ -591,7 +591,7 @@
               Download Fractional CTO Analysis
             </Button>
             
-            <Button href="https://calendly.com/jason-conversadocs/30min" variant="primary" class="w-full">
+            <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="primary" class="w-full">
               Discuss Fractional CTO Services
             </Button>
           </div>
@@ -621,7 +621,7 @@
     </p>
     
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/jason-conversadocs/30min" variant="secondary" size="lg">
+      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="secondary" size="lg">
         Discuss Your Needs
       </Button>
       
