@@ -1,12 +1,52 @@
 <script lang="ts">
-  import { ArrowLeft, ArrowRight, Building, Clock, Calendar, Award, TrendingUp, CheckCircle } from 'lucide-svelte';
+  import { ArrowLeft, ArrowRight, Building, Clock, Calendar, Award, TrendingUp, CheckCircle, Share2 } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
   import { formatDate } from '$lib/utils';
+  import { page } from '$app/stores';
   import type { PageData } from './$types';
   
   export let data: PageData;
   
   $: ({ caseStudy, seo } = data);
+  
+  // Get the current page URL
+  $: currentUrl = `${$page.url.origin}${$page.url.pathname}`;
+  
+  // Share functions
+  function shareOnLinkedIn() {
+    const url = encodeURIComponent(currentUrl);
+    const title = encodeURIComponent(caseStudy.fields.title);
+    const summary = encodeURIComponent(`Case Study: ${caseStudy.fields.title} - ${caseStudy.fields.challenge.substring(0, 100)}...`);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`, '_blank');
+  }
+  
+  function shareOnX() {
+    const url = encodeURIComponent(currentUrl);
+    const text = encodeURIComponent(`Case Study: ${caseStudy.fields.title} - Real-world technical solutions by Jason Anton`);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+  }
+  
+  function shareOnBluesky() {
+    const url = encodeURIComponent(currentUrl);
+    const text = encodeURIComponent(`Case Study: ${caseStudy.fields.title} - Real-world technical solutions by Jason Anton ${currentUrl}`);
+    window.open(`https://bsky.app/intent/compose?text=${text}`, '_blank');
+  }
+  
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = currentUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Link copied to clipboard!');
+    }
+  }
   
   // Parse the solution content to handle Contentful Rich Text format
   $: formattedSolution = (() => {
@@ -218,7 +258,7 @@
         {/if}
         
         <!-- Project Details -->
-        <div class="card p-6">
+        <div class="card p-6 mb-8">
           <h3 class="text-lg font-semibold text-neutral-900 mb-4">Project Details</h3>
           
           <div class="space-y-4">
@@ -246,6 +286,41 @@
               <div class="text-sm font-medium text-neutral-700">Completed</div>
               <div class="text-neutral-900">{formatDate(caseStudy.fields.publishedDate)}</div>
             </div>
+          </div>
+        </div>
+        
+        <!-- Share Section -->
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
+            <Share2 class="w-5 h-5 text-primary-600 mr-2" />
+            Share This Case Study
+          </h3>
+          
+          <div class="space-y-3">
+            <button 
+              on:click={() => shareOnLinkedIn()}
+              class="w-full text-left px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+            >
+              Share on LinkedIn
+            </button>
+            <button 
+              on:click={() => shareOnX()}
+              class="w-full text-left px-4 py-2 bg-black text-white rounded-lg hover:bg-neutral-800 transition-colors text-sm"
+            >
+              Share on X
+            </button>
+            <button 
+              on:click={() => shareOnBluesky()}
+              class="w-full text-left px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
+            >
+              Share on Bluesky
+            </button>
+            <button 
+              on:click={() => copyLink()}
+              class="w-full text-left px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 transition-colors text-sm"
+            >
+              Copy Link
+            </button>
           </div>
         </div>
       </div>

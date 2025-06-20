@@ -2,35 +2,52 @@
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  import GoogleAnalytics from '$lib/components/GoogleAnalytics.svelte';
+  import { page } from '$app/stores';
   import type { PageData } from '$types';
   
   export let data: PageData;
+  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID || '';
 </script>
 
+<GoogleAnalytics {measurementId} />
+
 <svelte:head>
-  <title>Technical Consulting Excellence | Digital Transformation Orchestrator</title>
+  <title>The Digital Janitor | Jason Anton</title>
   <meta name="description" content="15+ years of cross-functional technical expertise helping businesses navigate digital transformation, AI implementation, and strategic technology decisions." />
   <meta name="keywords" content="technical consulting, digital transformation, AI implementation, fractional CTO, technology strategy" />
   
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Technical Consulting Excellence" />
-  <meta property="og:description" content="Digital Transformation Orchestrator with 15+ years of cross-functional expertise" />
+  <meta property="og:title" content="The Digital Janitor" />
+  <meta property="og:description" content="Cleaning digital messes with 15+ years of cross-functional expertise" />
+  <meta property="og:image" content="{$page.url.origin}/logo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Digital Janitor - Jason Anton" />
+  <meta property="og:url" content="{$page.url.href}" />
+  <meta property="og:site_name" content="JasonAnton.com" />
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Technical Consulting Excellence" />
-  <meta name="twitter:description" content="Digital Transformation Orchestrator with 15+ years of cross-functional expertise" />
+  <meta name="twitter:site" content="@stoopidjson" />
+  <meta name="twitter:creator" content="@stoopidjson" />
+  <meta name="twitter:title" content="The Digital Janitor" />
+  <meta name="twitter:description" content="Cleaning digital messes with 15+ years of cross-functional expertise" />
+  <meta name="twitter:image" content="{$page.url.origin}/logo.png" />
+  <meta name="twitter:image:alt" content="The Digital Janitor - Jason Anton" />
   
   <!-- Structured Data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "Technical Consulting Excellence",
+      "name": "The Digital Janitor",
       "description": "Digital transformation and technical consulting services",
       "serviceType": "Technology Consulting",
       "areaServed": "Global",
+      "logo": "{$page.url.origin}/logo.png",
+      "image": "{$page.url.origin}/logo.png",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Consulting Services",
