@@ -46,13 +46,11 @@
         <div class="lg:col-span-2">
           <div class="flex items-center space-x-2 mb-4">
             <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <!-- Broom handle -->
-                <rect x="10.5" y="2" width="1.5" height="14" />
-                <!-- Broom head/bristles -->
-                <path d="M8 16l1-1h4l1 1v6l-1.5-1.5L12 22l-0.5-1.5L10 22l-1-1v-6z"/>
-                <path d="M8.5 17v4M9.5 17v4.5M10.5 17v4M11.5 17v4.5M12.5 17v4M13.5 17v4.5M14.5 17v4"/>
-              </svg>
+              <img 
+                src="/logo.svg" 
+                alt="The Digital Janitor logo" 
+                class="w-5 h-5"
+              />
             </div>
             <span class="text-xl font-bold">The Digital Janitor</span>
           </div>
