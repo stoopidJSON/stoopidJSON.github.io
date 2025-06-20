@@ -1,9 +1,27 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { ArrowRight, CheckCircle, Star, Users, TrendingUp } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
   import type { PageData } from './$types';
   
   export let data: PageData;
+  
+  let isMobile = false;
+  let mounted = false;
+  
+  onMount(() => {
+    // Detect mobile devices
+    isMobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    mounted = true;
+    
+    // Listen for resize events to update mobile detection
+    const handleResize = () => {
+      isMobile = window.innerWidth < 768;
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  });
   
   // Extract data from the load function
   $: ({ homepage, services, caseStudies, seo } = data);
@@ -85,73 +103,98 @@
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden hero-gradient">
-  <!-- Animated Code Background -->
-  <div class="absolute inset-0 opacity-20">
-    <div class="code-rain">
-      <!-- More code lines with different commands -->
-      <div class="code-line" style="left: 5%; animation-delay: 0s;">
-        <span class="command">$ sudo clean-digital-mess</span>
-      </div>
-      <div class="code-line" style="left: 15%; animation-delay: 3s;">
-        <span class="comment"># Modernizing legacy systems...</span>
-      </div>
-      <div class="code-line" style="left: 25%; animation-delay: 1s;">
-        <span class="function">function transformLegacy() {'{ }'}</span>
-      </div>
-      <div class="code-line" style="left: 35%; animation-delay: 5s;">
-        <span class="command">$ docker run --rm legacy-cleaner</span>
-      </div>
-      <div class="code-line" style="left: 45%; animation-delay: 2s;">
-        <span class="variable">const solution = optimize(chaos);</span>
-      </div>
-      <div class="code-line" style="left: 55%; animation-delay: 7s;">
-        <span class="success">✓ Migration completed successfully</span>
-      </div>
-      <div class="code-line" style="left: 65%; animation-delay: 4s;">
-        <span class="comment"># TODO: Fix technical debt</span>
-      </div>
-      <div class="code-line" style="left: 75%; animation-delay: 6s;">
-        <span class="function">deploy({'{ status: \'clean\' }'});</span>
-      </div>
-      <div class="code-line" style="left: 85%; animation-delay: 8s;">
-        <span class="command">$ systemctl restart innovation</span>
-      </div>
-      <div class="code-line" style="left: 95%; animation-delay: 1.5s;">
-        <span class="success">Process optimization: 100% complete</span>
-      </div>
-      
-      <!-- Second row with different timing -->
-      <div class="code-line" style="left: 8%; animation-delay: 10s;">
-        <span class="variable">modernize().then(success);</span>
-      </div>
-      <div class="code-line" style="left: 18%; animation-delay: 12s;">
-        <span class="command">$ git commit -m "cleaned digital mess"</span>
-      </div>
-      <div class="code-line" style="left: 28%; animation-delay: 14s;">
-        <span class="error">ERROR: Legacy system detected</span>
-      </div>
-      <div class="code-line" style="left: 38%; animation-delay: 11s;">
-        <span class="success">FIXED: System now optimized</span>
-      </div>
-      <div class="code-line" style="left: 48%; animation-delay: 13s;">
-        <span class="function">if (digitalMess) {'{ clean(); }'}</span>
-      </div>
-      <div class="code-line" style="left: 58%; animation-delay: 15s;">
-        <span class="command">$ npm run build:production</span>
-      </div>
-      <div class="code-line" style="left: 68%; animation-delay: 9s;">
-        <span class="comment"># Implementing best practices...</span>
-      </div>
-      <div class="code-line" style="left: 78%; animation-delay: 16s;">
-        <span class="variable">const janitor = new DigitalJanitor();</span>
-      </div>
-      <div class="code-line" style="left: 88%; animation-delay: 17s;">
-        <span class="success">✓ All systems operational</span>
+  <!-- Animated Code Background - Only on Desktop -->
+  {#if mounted && !isMobile}
+    <div class="absolute inset-0 opacity-20">
+      <div class="code-rain">
+        <!-- Immediate start animations (0-2s delays) -->
+        <div class="code-line" style="left: 5%; animation-delay: 0s;">
+          <span class="command">$ sudo clean-digital-mess</span>
+        </div>
+        <div class="code-line" style="left: 25%; animation-delay: 0.5s;">
+          <span class="function">function transformLegacy() {'{ }'}</span>
+        </div>
+        <div class="code-line" style="left: 45%; animation-delay: 1s;">
+          <span class="variable">const solution = optimize(chaos);</span>
+        </div>
+        <div class="code-line" style="left: 65%; animation-delay: 1.5s;">
+          <span class="comment"># TODO: Fix technical debt</span>
+        </div>
+        <div class="code-line" style="left: 85%; animation-delay: 2s;">
+          <span class="command">$ systemctl restart innovation</span>
+        </div>
+        
+        <!-- Second wave (2-4s delays) -->
+        <div class="code-line" style="left: 15%; animation-delay: 2.5s;">
+          <span class="comment"># Modernizing legacy systems...</span>
+        </div>
+        <div class="code-line" style="left: 35%; animation-delay: 3s;">
+          <span class="command">$ docker run --rm legacy-cleaner</span>
+        </div>
+        <div class="code-line" style="left: 55%; animation-delay: 3.5s;">
+          <span class="success">✓ Migration completed successfully</span>
+        </div>
+        <div class="code-line" style="left: 75%; animation-delay: 4s;">
+          <span class="function">deploy({'{ status: \'clean\' }'});</span>
+        </div>
+        <div class="code-line" style="left: 95%; animation-delay: 4.5s;">
+          <span class="success">Process optimization: 100% complete</span>
+        </div>
+        
+        <!-- Third wave (5-7s delays) -->
+        <div class="code-line" style="left: 8%; animation-delay: 5s;">
+          <span class="variable">modernize().then(success);</span>
+        </div>
+        <div class="code-line" style="left: 28%; animation-delay: 5.5s;">
+          <span class="command">$ git commit -m "cleaned digital mess"</span>
+        </div>
+        <div class="code-line" style="left: 48%; animation-delay: 6s;">
+          <span class="function">if (digitalMess) {'{ clean(); }'}</span>
+        </div>
+        <div class="code-line" style="left: 68%; animation-delay: 6.5s;">
+          <span class="command">$ npm run build:production</span>
+        </div>
+        <div class="code-line" style="left: 88%; animation-delay: 7s;">
+          <span class="success">✓ All systems operational</span>
+        </div>
+        
+        <!-- Fourth wave (8-9s delays) -->
+        <div class="code-line" style="left: 18%; animation-delay: 8s;">
+          <span class="error">ERROR: Legacy system detected</span>
+        </div>
+        <div class="code-line" style="left: 38%; animation-delay: 8.5s;">
+          <span class="success">FIXED: System now optimized</span>
+        </div>
+        <div class="code-line" style="left: 58%; animation-delay: 9s;">
+          <span class="comment"># Implementing best practices...</span>
+        </div>
+        <div class="code-line" style="left: 78%; animation-delay: 9.5s;">
+          <span class="variable">const janitor = new DigitalJanitor();</span>
+        </div>
       </div>
     </div>
-    
-    <!-- Circuit Pattern Overlay -->
-    <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+  {/if}
+  
+  <!-- Static Circuit Pattern for Mobile -->
+  {#if mounted && isMobile}
+    <div class="absolute inset-0 opacity-10">
+      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="circuit-mobile" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M10 10h80v20h-20v20h-20v20h-20v20h-20" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+            <circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.4"/>
+            <circle cx="70" cy="50" r="2" fill="currentColor" opacity="0.4"/>
+            <circle cx="50" cy="80" r="2" fill="currentColor" opacity="0.4"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit-mobile)" class="text-white"/>
+      </svg>
+    </div>
+  {/if}
+  
+  <!-- Circuit Pattern Overlay for Desktop -->
+  {#if !mounted || !isMobile}
+    <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
           <path d="M10 10h80v20h-20v20h-20v20h-20v20h-20" stroke="currentColor" stroke-width="1" fill="none" opacity="0.1"/>
@@ -162,7 +205,7 @@
       </defs>
       <rect width="100%" height="100%" fill="url(#circuit)" class="text-white"/>
     </svg>
-  </div>
+  {/if}
   
   <div class="absolute inset-0 bg-black/10"></div>
   
@@ -390,9 +433,10 @@
     to { opacity: 1; transform: translateY(0); }
   }
   
+  /* Faster code rain animation */
   @keyframes codeRain {
     0% { 
-      transform: translateY(-100vh) rotate(0deg);
+      transform: translateY(-20vh) rotate(0deg);
       opacity: 0;
     }
     5% {
@@ -402,7 +446,7 @@
       opacity: 1;
     }
     100% { 
-      transform: translateY(100vh) rotate(2deg);
+      transform: translateY(120vh) rotate(2deg);
       opacity: 0;
     }
   }
@@ -430,7 +474,7 @@
     white-space: nowrap;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
     font-size: 13px;
-    animation: codeRain 25s linear infinite;
+    animation: codeRain 15s linear infinite; /* Faster 15s instead of 25s */
     transform-origin: center;
   }
   
@@ -472,10 +516,33 @@
     backdrop-filter: blur(1px);
   }
   
-  /* Responsive adjustments */
+  /* Mobile optimization */
   @media (max-width: 768px) {
+    .hero-gradient {
+      /* Simplified gradient for mobile */
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      animation: none;
+    }
+    
     .code-line {
-      font-size: 12px;
+      display: none !important; /* Extra safety for mobile */
+    }
+  }
+  
+  /* Prefers reduced motion accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .code-line {
+      animation: none;
+      display: none;
+    }
+    
+    .hero-gradient {
+      animation: none;
+    }
+    
+    .animate-fade-in,
+    .animate-slide-up {
+      animation: none;
     }
   }
 </style>
