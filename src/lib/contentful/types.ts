@@ -1,4 +1,6 @@
+// src/lib/contentful/types.ts
 import type { Entry, Asset } from 'contentful';
+import type { Document } from '@contentful/rich-text-types';
 
 // Base Contentful entry type
 export interface ContentfulEntry<T = any> extends Entry<T> {
@@ -14,7 +16,31 @@ export interface ContentfulEntry<T = any> extends Entry<T> {
   };
 }
 
-// Homepage content type
+// Updated Blog Post content type with rich text support
+export interface BlogPostFields {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: Document; // Rich text document
+  publishedDate: string;
+  updatedDate?: string;
+  featured: boolean;
+  readingTime: number;
+  tags?: string[];
+  category: 'Technical Deep Dive' | 'Industry Analysis' | 'Opinion' | 'How-To Guide' | 'Career & Leadership';
+  authorName: string;
+  authorBio?: string;
+  authorAvatar?: Asset;
+  featuredImage?: Asset;
+  featuredImageAltText?: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords?: string[];
+}
+
+export type BlogPost = ContentfulEntry<BlogPostFields>;
+
+// Keep existing types...
 export interface HomepageFields {
   heroTitle: string;
   heroSubtitle: string;
@@ -87,26 +113,6 @@ export interface CaseStudyFields {
 
 export type CaseStudy = ContentfulEntry<CaseStudyFields>;
 
-// Blog Post content type
-export interface BlogPostFields {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string; // Rich text or markdown
-  publishedDate: string;
-  updatedDate?: string;
-  author: Entry<AuthorFields>;
-  tags: string[];
-  featuredImage: Asset;
-  readingTime: number;
-  featured: boolean;
-  seoTitle: string;
-  seoDescription: string;
-  seoKeywords: string[];
-}
-
-export type BlogPost = ContentfulEntry<BlogPostFields>;
-
 // Author content type
 export interface AuthorFields {
   name: string;
@@ -139,7 +145,7 @@ export type Testimonial = ContentfulEntry<TestimonialFields>;
 export interface PageFields {
   title: string;
   slug: string;
-  content: string; // Rich text or markdown
+  content: Document; // Rich text document
   seoTitle: string;
   seoDescription: string;
   seoKeywords: string[];

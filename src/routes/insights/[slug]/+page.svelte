@@ -1,47 +1,54 @@
 <script lang="ts">
   import { ArrowLeft, ArrowRight, Calendar, Clock, User, Share2, BookOpen, Star } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
+  import RichTextRenderer from '$lib/components/RichTextRenderer.svelte';
   import { formatDate } from '$lib/utils';
+  import { page } from '$app/stores';
   import type { PageData } from './$types';
   
   export let data: PageData;
   
   $: ({ post, seo } = data);
   
-  // Parse the content to handle line breaks and formatting
-  $: formattedContent = (() => {
-    if (!post?.fields) return ['Loading article...'];
-    
-    const content = post.fields.content;
-    
-    // Handle Contentful Rich Text format
-    if (content && typeof content === 'object' && content.content) {
-      const textContent = content.content
-        .map((node: any) => {
-          if (node.nodeType === 'paragraph' && node.content) {
-            return node.content
-              .map((textNode: any) => textNode.value || '')
-              .join('');
-          } else if (node.nodeType === 'heading-2' && node.content) {
-            return '## ' + node.content
-              .map((textNode: any) => textNode.value || '')
-              .join('');
-          }
-          return '';
-        })
-        .filter((text: string) => text.trim())
-        .join('\n\n');
-      
-      return textContent ? textContent.split('\n\n') : ['Article content not available.'];
+  // Get the current page URL
+  $: currentUrl = `${$page.url.origin}${$page.url.pathname}`;
+  
+  // Share functions
+  function shareOnLinkedIn() {
+    const url = encodeURIComponent(currentUrl);
+    const title = encodeURIComponent(post.fields.title);
+    const summary = encodeURIComponent(post.fields.excerpt);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${summary}`, '_blank');
+  }
+  
+  function shareOnX() {
+    const url = encodeURIComponent(currentUrl);
+    const text = encodeURIComponent(`${post.fields.title} by ${post.fields.authorName || 'Jason Anton'}`);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+  }
+  
+  function shareOnBluesky() {
+    const url = encodeURIComponent(currentUrl);
+    const text = encodeURIComponent(`${post.fields.title} by ${post.fields.authorName || 'Jason Anton'} ${currentUrl}`);
+    window.open(`https://bsky.app/intent/compose?text=${text}`, '_blank');
+  }
+  
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      // You could add a toast notification here
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = currentUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Link copied to clipboard!');
     }
-    
-    // Handle plain text format (fallback data)
-    if (typeof content === 'string' && content.trim()) {
-      return content.split('\n\n').filter(p => p.trim());
-    }
-    
-    return ['Article content not available.'];
-  })();
+  }
   
   // Get category color
   function getCategoryColor(category: string): string {
@@ -55,6 +62,34 @@
     };
     return colors[category as keyof typeof colors] || 'bg-neutral-100 text-neutral-700';
   }
+
+  // Handle featured image
+  $: featuredImage = (() => {
+    if (post?.fields?.featuredImage?.fields?.file) {
+      const file = post.fields.featuredImage.fields.file;
+      const url = file.url.startsWith('//') ? `https:${file.url}` : file.url;
+      return {
+        url,
+        alt: post.fields.featuredImageAltText || post.fields.featuredImage.fields.title || 'Article featured image',
+        width: file.details?.image?.width,
+        height: file.details?.image?.height
+      };
+    }
+    return null;
+  })();
+
+  // Handle author avatar
+  $: authorAvatar = (() => {
+    if (post?.fields?.authorAvatar?.fields?.file) {
+      const file = post.fields.authorAvatar.fields.file;
+      const url = file.url.startsWith('//') ? `https:${file.url}` : file.url;
+      return {
+        url,
+        alt: `${post.fields.authorName} avatar`
+      };
+    }
+    return null;
+  })();
 </script>
 
 <svelte:head>
@@ -68,11 +103,17 @@
   <meta property="og:type" content="article" />
   <meta property="article:author" content={post.fields.authorName || 'Jason Anton'} />
   <meta property="article:published_time" content={post.fields.publishedDate} />
+  {#if featuredImage}
+    <meta property="og:image" content={featuredImage.url} />
+  {/if}
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={seo.title} />
   <meta name="twitter:description" content={seo.description} />
+  {#if featuredImage}
+    <meta name="twitter:image" content={featuredImage.url} />
+  {/if}
 </svelte:head>
 
 <!-- Breadcrumb -->
@@ -87,6 +128,20 @@
     </nav>
   </div>
 </section>
+
+<!-- Featured Image (if available) -->
+{#if featuredImage}
+  <section class="relative">
+    <img 
+      src={featuredImage.url} 
+      alt={featuredImage.alt}
+      class="w-full h-64 md:h-96 object-cover"
+      width={featuredImage.width}
+      height={featuredImage.height}
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+  </section>
+{/if}
 
 <!-- Article Header -->
 <section class="section-padding bg-white">
@@ -125,12 +180,20 @@
         <!-- Author and Meta Info -->
         <div class="flex items-center justify-center space-x-6 text-sm text-neutral-500">
           <div class="flex items-center">
-            <User class="w-8 h-8 text-neutral-400 bg-neutral-100 rounded-full p-1 mr-3" />
+            {#if authorAvatar}
+              <img 
+                src={authorAvatar.url} 
+                alt={authorAvatar.alt}
+                class="w-8 h-8 rounded-full mr-3"
+              />
+            {:else}
+              <User class="w-8 h-8 text-neutral-400 bg-neutral-100 rounded-full p-1 mr-3" />
+            {/if}
             <div class="text-left">
               <div class="font-medium text-neutral-900">
                 {post.fields.authorName || 'Jason Anton'}
               </div>
-              <div class="text-xs">The Digital Janitor</div>
+              <div class="text-xs">{post.fields.authorBio || 'The Digital Janitor'}</div>
             </div>
           </div>
           
@@ -156,30 +219,20 @@
       <!-- Main Content -->
       <div class="lg:col-span-3">
         <article class="card p-8 lg:p-12">
-          <div class="prose prose-lg max-w-none">
-            {#each formattedContent as paragraph}
-              {#if paragraph.startsWith('## ')}
-                <h2 class="text-2xl font-bold text-neutral-900 mt-12 mb-6 first:mt-0">
-                  {paragraph.replace('## ', '')}
-                </h2>
-              {:else if paragraph.startsWith('**') && paragraph.endsWith(':**')}
-                <h3 class="text-xl font-semibold text-neutral-900 mt-8 mb-4">
-                  {paragraph.replace(/\*\*/g, '').replace(':', '')}
-                </h3>
-              {:else}
-                <p class="text-neutral-700 leading-relaxed mb-6">
-                  {paragraph}
-                </p>
-              {/if}
-            {/each}
-          </div>
+          {#if post.fields.content}
+            <RichTextRenderer document={post.fields.content} />
+          {:else}
+            <div class="text-center py-12">
+              <p class="text-neutral-500">Content not available.</p>
+            </div>
+          {/if}
         </article>
       </div>
       
       <!-- Sidebar -->
       <div class="lg:col-span-1">
         <!-- Table of Contents (if needed) -->
-        <div class="card p-6 mb-8 sticky top-8">
+        <div class="card p-6 mb-8">
           <h3 class="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
             <BookOpen class="w-5 h-5 text-primary-600 mr-2" />
             Article Info
@@ -200,6 +253,13 @@
               <div class="text-sm font-medium text-neutral-700">Published</div>
               <div class="text-neutral-900">{formatDate(post.fields.publishedDate)}</div>
             </div>
+            
+            {#if post.fields.updatedDate}
+              <div>
+                <div class="text-sm font-medium text-neutral-700">Updated</div>
+                <div class="text-neutral-900">{formatDate(post.fields.updatedDate)}</div>
+              </div>
+            {/if}
             
             {#if post.fields.tags && post.fields.tags.length > 0}
               <div>
@@ -240,47 +300,32 @@
           </h3>
           
           <div class="space-y-3">
-            <button class="w-full text-left px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            <button 
+              on:click={() => shareOnLinkedIn()}
+              class="w-full text-left px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+            >
               Share on LinkedIn
             </button>
-            <button class="w-full text-left px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors text-sm">
-              Share on Twitter
+            <button 
+              on:click={() => shareOnX()}
+              class="w-full text-left px-4 py-2 bg-black text-white rounded-lg hover:bg-neutral-800 transition-colors text-sm"
+            >
+              Share on X
             </button>
-            <button class="w-full text-left px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 transition-colors text-sm">
+            <button 
+              on:click={() => shareOnBluesky()}
+              class="w-full text-left px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
+            >
+              Share on Bluesky
+            </button>
+            <button 
+              on:click={() => copyLink()}
+              class="w-full text-left px-4 py-2 bg-neutral-600 text-white rounded-lg hover:bg-neutral-700 transition-colors text-sm"
+            >
               Copy Link
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Newsletter Signup -->
-<section class="section-padding bg-white">
-  <div class="container-custom">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-neutral-900 mb-4">
-        Enjoyed This Article?
-      </h2>
-      <p class="text-xl text-neutral-600 mb-8">
-        Get more insights like this delivered to your inbox. No spam, no buzzwords—just practical perspectives on technology and digital transformation.
-      </p>
-      
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-8">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          class="flex-1 px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          required
-        />
-        <Button type="submit" variant="primary">
-          Subscribe
-        </Button>
-      </form>
-      
-      <div class="text-sm text-neutral-500">
-        Join other technology leaders who rely on practical insights to drive results.
       </div>
     </div>
   </div>

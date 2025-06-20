@@ -16,6 +16,8 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"devDependencies": {
+		"@contentful/rich-text-html-renderer": "^17.0.1",
+		"@contentful/rich-text-types": "^17.0.1",
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
 		"@sveltejs/adapter-auto": "^6.0.0",
