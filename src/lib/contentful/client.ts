@@ -20,17 +20,21 @@ const client: ContentfulClientApi | null = hasContentfulConfig ? createClient({
 // Helper function to handle errors gracefully
 async function safeContentfulCall<T>(
   operation: () => Promise<T>,
-  fallback: T
+  fallback: T,
+  operationName: string = 'Contentful operation'
 ): Promise<T> {
   if (!client || isBrowser) {
-    console.warn('Contentful client not available, using fallback data');
+    console.warn(`${operationName}: Contentful client not available, using fallback data`);
     return fallback;
   }
 
   try {
-    return await operation();
+    const result = await operation();
+    console.log(`${operationName}: Successfully fetched ${Array.isArray(result) ? result.length : '1'} items`);
+    return result;
   } catch (error) {
-    console.error('Contentful error:', error);
+    console.error(`${operationName} error:`, error);
+    console.warn(`${operationName}: Using fallback data due to error`);
     return fallback;
   }
 }
