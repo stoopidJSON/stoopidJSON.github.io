@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Dynamic sitemap generated at build time
+Sitemap: https://jasonanton.com/sitemap.xml
+
+# Block unnecessary paths
+Disallow: /api/
+Disallow: /_app/
+Disallow: /node_modules/
+
+# Allow important discovery
+Allow: /resources/roi-calculator/
