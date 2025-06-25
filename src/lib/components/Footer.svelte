@@ -24,7 +24,6 @@
       { name: 'Contact', href: 'https://calendly.com/stoopidjson/technical-assessment' },
     ],
     resources: [
-      { name: 'ROI Calculators', href: '/resources/roi-calculator' },
       { name: 'ConversaDocs', href: 'https://conversadocs.ai' },
       { name: 'Stoopid Website', href: 'https://stoopid.website' },
     ],

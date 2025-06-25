@@ -1,6 +1,7 @@
 <script lang="ts">
   import { TrendingUp, Brain, Users, Search, ArrowRight, CheckCircle, ArrowLeft, Calendar, DollarSign, Clock } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
+  import RichTextRenderer from '$lib/components/RichTextRenderer.svelte';
   import type { PageData } from './$types';
   
   export let data: PageData;
@@ -29,18 +30,26 @@
     }
   }
   
-  // Parse the full description to handle line breaks - with better null safety
-  $: formattedDescription = (() => {
+  // Check if fullDescription is Rich Text (Contentful) or plain text (fallback)
+  $: isRichText = service?.fields?.fullDescription && 
+                  typeof service.fields.fullDescription === 'object' && 
+                  service.fields.fullDescription.content;
+  
+  // Parse the full description for plain text fallback data
+  $: formattedDescriptionParagraphs = (() => {
     if (!service?.fields) return ['Loading service information...'];
     
-    const fullDesc = service.fields.fullDescription;
-    if (typeof fullDesc === 'string' && fullDesc.trim()) {
-      return fullDesc.split('\n\n').filter(p => p.trim());
-    }
-    
-    const shortDesc = service.fields.shortDescription;
-    if (typeof shortDesc === 'string' && shortDesc.trim()) {
-      return [shortDesc];
+    // If it's not rich text (fallback data), parse as plain text
+    if (!isRichText) {
+      const fullDesc = service.fields.fullDescription;
+      if (typeof fullDesc === 'string' && fullDesc.trim()) {
+        return fullDesc.split('\n\n').filter(p => p.trim());
+      }
+      
+      const shortDesc = service.fields.shortDescription;
+      if (typeof shortDesc === 'string' && shortDesc.trim()) {
+        return [shortDesc];
+      }
     }
     
     return ['Service description not available.'];
@@ -137,17 +146,23 @@
     <div class="grid lg:grid-cols-3 gap-12">
       <!-- Main Description -->
       <div class="lg:col-span-2">
-        <div class="prose prose-lg max-w-none">
-          <h2 class="text-3xl font-bold text-neutral-900 mb-6">
-            How I Can Help
-          </h2>
-          
-          {#each formattedDescription as paragraph}
-            <p class="text-neutral-700 leading-relaxed mb-6">
-              {paragraph}
-            </p>
-          {/each}
-        </div>
+        <h2 class="text-3xl font-bold text-neutral-900 mb-6">
+          How I Can Help
+        </h2>
+        
+        {#if isRichText}
+          <!-- Render Rich Text content from Contentful -->
+          <RichTextRenderer document={service.fields.fullDescription} />
+        {:else}
+          <!-- Render plain text content from fallback data -->
+          <div class="prose prose-lg max-w-none">
+            {#each formattedDescriptionParagraphs as paragraph}
+              <p class="text-neutral-700 leading-relaxed mb-6">
+                {paragraph}
+              </p>
+            {/each}
+          </div>
+        {/if}
       </div>
       
       <!-- Sidebar -->
@@ -167,18 +182,6 @@
               {/each}
             </div>
           {/if}
-          
-          <div class="border-t pt-6">
-            <h4 class="font-semibold text-neutral-900 mb-4">Curious About ROI?</h4>
-            <p class="text-sm text-neutral-600 mb-6">
-              Use the ROI Calculator to see your potential return on investment for this service.
-            </p>
-            
-            <Button href="/resources/roi-calculator/{service.fields.slug}" variant="primary" class="w-full">
-              ROI Calculator
-              <ArrowRight class="ml-2 h-4 w-4" />
-            </Button>
-          </div>
         </div>
       </div>
     </div>
