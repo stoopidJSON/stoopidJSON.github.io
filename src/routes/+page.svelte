@@ -51,20 +51,17 @@
     {
       icon: TrendingUp,
       title: 'Digital Transformation Strategy',
-      description: 'End-to-end digital transformation consulting that aligns technology with business objectives.',
-      price: '$250-350/hour'
+      description: 'End-to-end digital transformation consulting that aligns technology with business objectives.'
     },
     {
       icon: Users,
       title: 'AI/ML Implementation',
-      description: 'Strategic AI and machine learning implementation with focus on ROI and practical applications.',
-      price: '$250-1000/hour'
+      description: 'Strategic AI and machine learning implementation with focus on ROI and practical applications.'
     },
     {
       icon: CheckCircle,
       title: 'Fractional CTO Services',
-      description: 'Part-time executive technology leadership for startups and growing companies.',
-      price: '$10K-50K/month'
+      description: 'Part-time executive technology leadership for startups and growing companies.'
     }
   ];
   

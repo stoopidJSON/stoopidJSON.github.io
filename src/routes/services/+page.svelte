@@ -26,7 +26,6 @@
         slug: 'digital-transformation',
         shortDescription: 'End-to-end digital transformation consulting that aligns technology with business objectives. From legacy system modernization to cloud migration strategies.',
         icon: 'TrendingUp',
-        priceRange: '$250-350/hour',
         pricingType: 'hourly',
         featured: true,
         features: ['Technology roadmap development', 'Legacy system modernization', 'Cloud migration strategy', 'Vendor evaluation', 'Risk assessment', 'Team training']
@@ -38,7 +37,6 @@
         slug: 'ai-ml-implementation',
         shortDescription: 'Strategic AI and machine learning implementation with focus on ROI and practical applications. From platform architecture to deployment strategies.',
         icon: 'Brain',
-        priceRange: '$250-1000/hour',
         pricingType: 'hourly',
         featured: true,
         features: ['AI strategy development', 'Platform architecture', 'Generative AI integration', 'ML pipeline development', 'Data governance', 'ROI optimization']
@@ -50,7 +48,6 @@
         slug: 'fractional-cto',
         shortDescription: 'Part-time executive technology leadership for startups and growing companies. Strategic guidance without the full-time commitment.',
         icon: 'Users',
-        priceRange: '$10K-50K/month',
         pricingType: 'retainer',
         featured: true,
         features: ['Strategic planning', 'Team leadership', 'Architecture guidance', 'Process optimization', 'Due diligence support', 'Crisis management']
@@ -62,7 +59,6 @@
         slug: 'technical-due-diligence',
         shortDescription: 'Comprehensive technical assessment for M&A, investments, and strategic partnerships. Uncover hidden risks and validate technology claims.',
         icon: 'Search',
-        priceRange: '$15K-75K/project',
         pricingType: 'project',
         featured: false,
         features: ['Code quality assessment', 'Architecture analysis', 'Security evaluation', 'Technical debt analysis', 'Team assessment', 'Risk mitigation']
@@ -159,14 +155,6 @@
           
           <!-- Pricing and CTA -->
           <div class="flex items-center justify-between pt-6 border-t border-neutral-100">
-            <div>
-              <div class="text-2xl font-bold text-neutral-900">
-                {service.fields.priceRange}
-              </div>
-              <div class="text-sm text-neutral-500">
-                Starting rates
-              </div>
-            </div>
             
             <Button href="/services/{service.fields.slug}" variant="primary">
               Learn More

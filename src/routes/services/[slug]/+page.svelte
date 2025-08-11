@@ -108,10 +108,10 @@
           <div>
             <DollarSign class="w-8 h-8 text-primary-600 mx-auto mb-2" />
             <div class="text-2xl font-bold text-neutral-900 mb-1">
-              {service.fields.priceRange}
+              {formatPricingType(service.fields.pricingType)}
             </div>
             <div class="text-sm text-neutral-600">
-              {formatPricingType(service.fields.pricingType)}
+              Engagement Type
             </div>
           </div>
           
