@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Mail, Phone, MapPin, Linkedin, Instagram, Github, Calculator } from 'lucide-svelte';
+  import { Mail, Phone, MapPin, Linkedin, Instagram, Github, Calculator, Youtube } from 'lucide-svelte';
   import type { NavigationItem, SocialLink } from '$types';
   
   const currentYear = new Date().getFullYear();
@@ -31,8 +31,9 @@
   
   const socialLinks: SocialLink[] = [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/stoopidjson/', icon: Linkedin },
-    { name: 'Instagram', href: 'https://www.instagram.com/stoopidjson/', icon: Instagram },
+    { name: 'Instagram', href: 'https://www.instagram.com/stoopidtech/', icon: Instagram },
     { name: 'GitHub', href: 'https://github.com/stoopidJSON', icon: Github },
+    { name: 'YouTube', href: 'https://www.youtube.com/@stoopidTech', icon: Youtube}
   ];
 </script>
 
