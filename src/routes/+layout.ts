@@ -1,23 +1,28 @@
 import type { LayoutLoad } from './$types';
 import type { PageData } from '$types';
 
-export const load: LayoutLoad = async ({ url, fetch }) => {
-  // Global data that all pages need
+export const prerender = true;
+
+export const load: LayoutLoad = async () => {
+  const title = 'Anton — Thinking About Running';
+  const description =
+    'Jason Anton is thinking about running for President on five planks — and has agreed in writing to resign once two of them are finished. A satirical exploratory campaign.';
+
   const pageData: PageData = {
     seo: {
-      title: 'Technical Consulting Excellence | Digital Transformation Orchestrator',
-      description: '15+ years of cross-functional technical expertise helping businesses navigate digital transformation, AI implementation, and strategic technology decisions.',
-      keywords: ['technical consulting', 'digital transformation', 'AI implementation', 'fractional CTO', 'technology strategy'],
-      openGraph: {
-        title: 'Technical Consulting Excellence',
-        description: 'Digital Transformation Orchestrator with 15+ years of cross-functional expertise',
-        type: 'website'
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: 'Technical Consulting Excellence',
-        description: 'Digital Transformation Orchestrator with 15+ years of cross-functional expertise',
-      }
+      title,
+      description,
+      keywords: [
+        'Jason Anton',
+        'exploratory campaign',
+        'satire',
+        'abolish daylight saving time',
+        'year-round school',
+        'data center energy',
+        'political satire'
+      ],
+      openGraph: { title, description, type: 'website' },
+      twitter: { card: 'summary_large_image', title, description }
     }
   };
 
