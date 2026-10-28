@@ -1,3 +1,5 @@
+import type { ComponentType } from 'svelte';
+
 // Navigation types
 export interface NavigationItem {
   name: string;
@@ -8,104 +10,57 @@ export interface NavigationItem {
 export interface SocialLink {
   name: string;
   href: string;
-  icon: any;
+  /** A lucide-svelte icon, or the local TikTok.svelte, which matches their API. */
+  icon: ComponentType;
 }
 
-// Service types
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  href: string;
-  icon?: any;
-  features?: string[];
-  pricing?: {
-    type: 'hourly' | 'project' | 'retainer';
-    range: string;
-  };
+// Platform types
+export interface Objection {
+  question: string;
+  answer: string;
 }
 
-// Case study types
-export interface CaseStudy {
-  id: string;
-  title: string;
-  client: {
-    name: string;
-    industry: string;
-    size: string;
-  };
-  challenge: string;
-  solution: string;
-  results: {
-    metric: string;
-    value: string;
-    description: string;
-  }[];
-  technologies: string[];
-  timeline: string;
-  testimonial?: {
-    quote: string;
-    author: string;
-    position: string;
-  };
-  featured?: boolean;
-}
-
-// Blog/Insight types
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
+export interface Plank {
+  /** 1-indexed position on the platform, shown as the plank number. */
+  number: number;
+  /** URL segment under /platform/. Public and permanent once posted. */
   slug: string;
-  publishedAt: string;
-  updatedAt?: string;
-  author: {
-    name: string;
-    bio: string;
-    avatar: string;
-  };
-  tags: string[];
-  readingTime: number;
-  featured?: boolean;
-  seo: {
-    title: string;
-    description: string;
-    keywords: string[];
-  };
-}
-
-// Contact form types
-export interface ContactFormData {
-  name: string;
-  email: string;
-  company?: string;
-  phone?: string;
-  projectType: 'digital-transformation' | 'ai-ml' | 'fractional-cto' | 'due-diligence' | 'other';
-  budget: string;
-  timeline: string;
-  message: string;
-  source?: string;
-}
-
-// Lead magnet types
-export interface LeadMagnet {
-  id: string;
   title: string;
-  description: string;
-  type: 'guide' | 'calculator' | 'assessment' | 'template' | 'checklist';
-  downloadUrl: string;
-  landingPage: string;
-  fields: FormField[];
+  /** Compact label for nav, footer and cards. */
+  shortTitle: string;
+  tagline: string;
+  /** One-paragraph version used on the homepage and /platform. */
+  summary: string;
+  /** Body paragraphs for the plank's own page. */
+  position: string[];
+  objections: Objection[];
+  /** True if completing this plank obliges the candidate to resign. */
+  resignationTrigger: boolean;
+  icon: ComponentType;
 }
 
-export interface FormField {
+// Press types
+export type AppearancePlatform = 'tiktok' | 'instagram' | 'youtube';
+
+export interface Appearance {
+  platform: AppearancePlatform;
+  /** Platform-native id used to build the embed. */
+  id: string;
+  /** Canonical link to the post. */
+  url: string;
+  title: string;
+  /** ISO date, YYYY-MM-DD. */
+  date: string;
+  blurb?: string;
+}
+
+// Donate types
+export interface Cause {
   name: string;
-  type: 'text' | 'email' | 'select' | 'textarea' | 'checkbox';
-  label: string;
-  placeholder?: string;
-  required?: boolean;
-  options?: string[];
+  url: string;
+  blurb: string;
+  /** Required. Must state the org is unaffiliated and receives nothing here. */
+  disclaimer: string;
 }
 
 // SEO types
@@ -116,14 +71,14 @@ export interface SEOData {
   openGraph?: {
     title: string;
     description: string;
-    image: string;
+    image?: string;
     type: string;
   };
   twitter?: {
     card: string;
     title: string;
     description: string;
-    image: string;
+    image?: string;
   };
   structuredData?: object;
 }
@@ -131,13 +86,6 @@ export interface SEOData {
 // Page data types
 export interface PageData {
   seo: SEOData;
-  content?: any;
-}
-
-// Analytics types
-export interface AnalyticsEvent {
-  name: string;
-  properties?: Record<string, any>;
 }
 
 // Utility types

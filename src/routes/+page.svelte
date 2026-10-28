@@ -1,542 +1,291 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { ArrowRight, CheckCircle, Star, Users, TrendingUp } from 'lucide-svelte';
+  import { ArrowRight, Heart } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
+  import PlankCard from '$lib/components/PlankCard.svelte';
+  import { planks, resignationPlanks } from '$lib/content/platform';
+  import { socialLinks } from '$lib/content/socials';
   import type { PageData } from './$types';
-  
+
   export let data: PageData;
-  
+
   let isMobile = false;
   let mounted = false;
-  
+
   onMount(() => {
-    // Detect mobile devices
-    isMobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    isMobile =
+      window.innerWidth < 768 ||
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     mounted = true;
-    
-    // Listen for resize events to update mobile detection
+
     const handleResize = () => {
       isMobile = window.innerWidth < 768;
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   });
-  
-  // Extract data from the load function
-  $: ({ homepage, services, caseStudies, seo } = data);
-  
-  // Fallback content if Contentful data isn't available
-  const fallbackHero = {
-    title: "Purveyor of the Digital Janitorial Arts",
-    subtitle: "15+ Years of Cross-Functional Technical Expertise", 
-    description: "I help businesses and governments navigate complex technical challenges with end-to-end solutions. From AI implementation to fractional CTO services, get the strategic guidance that bridges business goals with technical excellence.",
-    ctaText: "Get Your Free Technical Assessment",
-    ctaLink: "https://calendly.com/stoopidjson/technical-assessment"
-  };
-  
-  // Use Contentful data or fallback
-  $: heroContent = homepage?.fields || fallbackHero;
-  
-  // Sample metrics for the stats section
-  const metrics = [
-    { value: '15+', label: 'Years Experience' },
-    { value: '$5mil+', label: 'Taxpayer Dollars Saved' },
-    { value: '2+', label: 'AI Platforms Built' },
-    { value: '100%', label: 'Cloud Migration Success' }
-  ];
-  
-  // Sample featured capabilities
-  const capabilities = [
-    {
-      icon: TrendingUp,
-      title: 'Digital Transformation Strategy',
-      description: 'End-to-end digital transformation consulting that aligns technology with business objectives.'
-    },
-    {
-      icon: Users,
-      title: 'AI/ML Implementation',
-      description: 'Strategic AI and machine learning implementation with focus on ROI and practical applications.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Fractional CTO Services',
-      description: 'Part-time executive technology leadership for startups and growing companies.'
-    }
-  ];
-  
 
-  // Real recognition and impact instead of fake testimonials
-  const recognition = [
-    {
-      title: "RealLIST Engineer 2020",
-      publication: "Technical.ly Magazine",
-      description: "Recognized as one of the RealLIST Engineers for developing critical civic tech solutions during the pandemic.",
-      quote: "Primary developer on Code for Baltimore's application that allowed the Baltimore City Health Department to contact '500-plus facilities in an instant' to assess needs during the pandemic, saving hundreds of hours of work.",
-      link: "https://technical.ly/software-development/reallist-engineers-20200-influential-technologists/"
-    },
-    {
-      title: "SEAS-IT AI Leader", 
-      publication: "Aquia",
-      description: "Guided implementation of CMS's first AI platform for data scientists.",
-      quote: "The CMS SEAS IT AI contract is more than just a technological upgrade; it is a forward-thinking blueprint for the future of government healthcare systems.",
-      link: "https://www.aquia.us/blog/seas-it-post"
-    },
-    {
-      title: "Case Study: Code for Baltimore",
-      publication: "Postman",
-      description: "Technical implementation showcased as best practice for API-driven civic technology solutions.",
-      quote: "Demonstrated how modern API architecture can solve complex municipal communication challenges at scale.",
-      link: "https://www.postman.com/case-studies/code-for-baltimore/"
-    }
-  ];
+  $: ({ seo } = data);
 </script>
 
 <svelte:head>
   <title>{seo.title}</title>
   <meta name="description" content={seo.description} />
-  <meta name="keywords" content={seo.keywords.join(', ')} />
 </svelte:head>
 
-<!-- Hero Section -->
-<section class="relative overflow-hidden hero-gradient">
-  <!-- Animated Code Background - Only on Desktop -->
+<!-- Hero -->
+<section class="relative overflow-hidden hero-field text-white">
+  <!-- Desktop-only decorative star field -->
   {#if mounted && !isMobile}
-    <div class="absolute inset-0 opacity-20">
-      <div class="code-rain">
-        <!-- Immediate start animations (0-2s delays) -->
-        <div class="code-line" style="left: 5%; animation-delay: 0s;">
-          <span class="command">$ sudo clean-digital-mess</span>
-        </div>
-        <div class="code-line" style="left: 25%; animation-delay: 0.5s;">
-          <span class="function">function transformLegacy() {'{ }'}</span>
-        </div>
-        <div class="code-line" style="left: 45%; animation-delay: 1s;">
-          <span class="variable">const solution = optimize(chaos);</span>
-        </div>
-        <div class="code-line" style="left: 65%; animation-delay: 1.5s;">
-          <span class="comment"># TODO: Fix technical debt</span>
-        </div>
-        <div class="code-line" style="left: 85%; animation-delay: 2s;">
-          <span class="command">$ systemctl restart innovation</span>
-        </div>
-        
-        <!-- Second wave (2-4s delays) -->
-        <div class="code-line" style="left: 15%; animation-delay: 2.5s;">
-          <span class="comment"># Modernizing legacy systems...</span>
-        </div>
-        <div class="code-line" style="left: 35%; animation-delay: 3s;">
-          <span class="command">$ docker run --rm legacy-cleaner</span>
-        </div>
-        <div class="code-line" style="left: 55%; animation-delay: 3.5s;">
-          <span class="success">✓ Migration completed successfully</span>
-        </div>
-        <div class="code-line" style="left: 75%; animation-delay: 4s;">
-          <span class="function">deploy({'{ status: \'clean\' }'});</span>
-        </div>
-        <div class="code-line" style="left: 95%; animation-delay: 4.5s;">
-          <span class="success">Process optimization: 100% complete</span>
-        </div>
-        
-        <!-- Third wave (5-7s delays) -->
-        <div class="code-line" style="left: 8%; animation-delay: 5s;">
-          <span class="variable">modernize().then(success);</span>
-        </div>
-        <div class="code-line" style="left: 28%; animation-delay: 5.5s;">
-          <span class="command">$ git commit -m "cleaned digital mess"</span>
-        </div>
-        <div class="code-line" style="left: 48%; animation-delay: 6s;">
-          <span class="function">if (digitalMess) {'{ clean(); }'}</span>
-        </div>
-        <div class="code-line" style="left: 68%; animation-delay: 6.5s;">
-          <span class="command">$ npm run build:production</span>
-        </div>
-        <div class="code-line" style="left: 88%; animation-delay: 7s;">
-          <span class="success">✓ All systems operational</span>
-        </div>
-        
-        <!-- Fourth wave (8-9s delays) -->
-        <div class="code-line" style="left: 18%; animation-delay: 8s;">
-          <span class="error">ERROR: Legacy system detected</span>
-        </div>
-        <div class="code-line" style="left: 38%; animation-delay: 8.5s;">
-          <span class="success">FIXED: System now optimized</span>
-        </div>
-        <div class="code-line" style="left: 58%; animation-delay: 9s;">
-          <span class="comment"># Implementing best practices...</span>
-        </div>
-        <div class="code-line" style="left: 78%; animation-delay: 9.5s;">
-          <span class="variable">const janitor = new DigitalJanitor();</span>
-        </div>
-      </div>
-    </div>
-  {/if}
-  
-  <!-- Static Circuit Pattern for Mobile -->
-  {#if mounted && isMobile}
-    <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 opacity-[0.07] pointer-events-none" aria-hidden="true">
       <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="circuit-mobile" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M10 10h80v20h-20v20h-20v20h-20v20h-20" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
-            <circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.4"/>
-            <circle cx="70" cy="50" r="2" fill="currentColor" opacity="0.4"/>
-            <circle cx="50" cy="80" r="2" fill="currentColor" opacity="0.4"/>
+          <pattern id="stars" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path
+              d="M40 18l4.7 9.5 10.5 1.5-7.6 7.4 1.8 10.4L40 42l-9.4 4.9 1.8-10.4-7.6-7.4 10.5-1.5z"
+              fill="currentColor"
+            />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#circuit-mobile)" class="text-white"/>
+        <rect width="100%" height="100%" fill="url(#stars)" class="text-white" />
       </svg>
     </div>
   {/if}
-  
-  <!-- Circuit Pattern Overlay for Desktop -->
-  {#if !mounted || !isMobile}
-    <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-          <path d="M10 10h80v20h-20v20h-20v20h-20v20h-20" stroke="currentColor" stroke-width="1" fill="none" opacity="0.1"/>
-          <circle cx="30" cy="30" r="2" fill="currentColor" opacity="0.2"/>
-          <circle cx="70" cy="50" r="2" fill="currentColor" opacity="0.2"/>
-          <circle cx="50" cy="80" r="2" fill="currentColor" opacity="0.2"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#circuit)" class="text-white"/>
-    </svg>
-  {/if}
-  
-  <div class="absolute inset-0 bg-black/10"></div>
-  
-  <div class="relative container-custom section-padding">
-    <div class="max-w-4xl mx-auto text-center text-white">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-        {heroContent.title}
+
+  <div class="relative container-custom py-16 lg:py-28">
+    <div class="max-w-4xl">
+      <div class="eyebrow text-primary-300 mb-6 animate-fade-in">
+        Exploratory committee of one &middot; Unofficial &middot; Ongoing
+      </div>
+
+      <h1
+        class="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] text-balance animate-fade-in"
+      >
+        I am thinking about running for President.
       </h1>
-      
-      <p class="text-xl md:text-2xl mb-6 text-primary-100 animate-slide-up animation-delay-200">
-        {heroContent.subtitle}
+
+      <div class="rule-double-light my-8 max-w-md animate-slide-up animation-delay-200"></div>
+
+      <p
+        class="text-xl md:text-2xl mb-6 text-primary-100 font-display animate-slide-up animation-delay-200"
+      >
+        Five things need to happen. Two of them get me to leave.
       </p>
-      
-      <p class="text-lg mb-8 text-primary-50 max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-400">
-        {heroContent.description}
+
+      <p
+        class="text-lg mb-10 text-primary-200 max-w-2xl leading-relaxed animate-slide-up animation-delay-400"
+      >
+        No committee. No consultants. No donations — not accepted, not wanted, not legally
+        available. Just five planks, one of which involves hamster wheels, and a written promise to
+        resign the moment two of them are finished.
       </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up animation-delay-600">
-        <Button href={heroContent.ctaLink} variant="accent" size="lg">
-          {heroContent.ctaText}
+
+      <div class="flex flex-col sm:flex-row gap-4 animate-slide-up animation-delay-600">
+        <Button href="/platform" variant="accent" size="lg">
+          Read the platform
           <ArrowRight class="ml-2 h-5 w-5" />
         </Button>
-        
-        <Button href="/case-studies" variant="secondary" size="lg">
-          View Case Studies
-        </Button>
+
+        <Button href="/resign" variant="secondary" size="lg">The resignation clause</Button>
       </div>
     </div>
   </div>
-  
-  <!-- Background decoration -->
-  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
 </section>
 
-<!-- Stats Section -->
-<section class="section-padding bg-white">
+<!-- The five planks -->
+<section class="section-padding bg-cream-50">
   <div class="container-custom">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      {#each metrics as metric}
-        <div class="text-center">
-          <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
-            {metric.value}
-          </div>
-          <div class="text-neutral-600 font-medium">
-            {metric.label}
-          </div>
-        </div>
+    <div class="max-w-3xl mb-12 lg:mb-16">
+      <div class="eyebrow mb-4">The Platform</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-primary-900 mb-5 text-balance">
+        Five planks, in order of how often I am asked about them
+      </h2>
+      <div class="rule-double max-w-xs mb-6"></div>
+      <p class="text-lg text-neutral-600 leading-relaxed">
+        Two are small enough to actually finish, which is why they are the two that end the
+        presidency. One I have been told is physically impossible. Each one has its own page,
+        because people keep asking follow-up questions and I have run out of caption space.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {#each planks as plank (plank.slug)}
+        <PlankCard {plank} />
       {/each}
     </div>
   </div>
 </section>
 
-<!-- Services Preview -->
-<section class="section-padding gradient-neutral">
+<!-- Resignation clause -->
+<section class="section-padding gradient-primary text-white">
   <div class="container-custom">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-        Strategic Technology Services
+    <div class="max-w-3xl">
+      <div class="eyebrow text-primary-300 mb-4">The Resignation Clause</div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-6 text-balance">
+        When two of the five are done, I go home.
       </h2>
-      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-        Comprehensive solutions that bridge the gap between business strategy and technical execution
+
+      <div class="rule-double-light max-w-xs mb-8"></div>
+
+      <p class="text-lg text-primary-100 leading-relaxed mb-8">
+        Not a transition. Not a stepping-back. A resignation, submitted within thirty days of the
+        second of these two being finished:
       </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      {#each capabilities as capability}
-        <div class="card p-8 text-center hover:shadow-xl transition-all duration-300">
-          <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <svelte:component this={capability.icon} class="w-8 h-8 text-primary-600" />
-          </div>
-          
-          <h3 class="text-xl font-semibold text-neutral-900 mb-4">
-            {capability.title}
-          </h3>
-          
-          <p class="text-neutral-600 mb-6">
-            {capability.description}
-          </p>
-          
-          <div class="text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full inline-block">
-            {capability.price}
-          </div>
+
+      <ol class="space-y-4 mb-10">
+        {#each resignationPlanks as plank (plank.slug)}
+          <li class="flex items-start gap-4 bg-primary-900/60 border border-primary-700 p-5">
+            <span class="font-display text-3xl text-accent-400 leading-none tabular-nums"
+              >{plank.number}</span
+            >
+            <div>
+              <a
+                href="/platform/{plank.slug}"
+                class="font-display text-lg font-bold hover:text-accent-400 transition-colors"
+              >
+                {plank.title}
+              </a>
+              <p class="text-primary-200 text-sm mt-1">{plank.tagline}</p>
+            </div>
+          </li>
+        {/each}
+      </ol>
+
+      <div class="flex items-center gap-6 flex-wrap">
+        <Button href="/resign" variant="accent" size="lg">
+          Read the terms
+          <ArrowRight class="ml-2 h-5 w-5" />
+        </Button>
+        <div class="font-stamp text-xs uppercase tracking-[0.18em] text-primary-300">
+          Progress: 0 of 2 complete
         </div>
-      {/each}
+      </div>
     </div>
-    
-    <div class="text-center mt-12">
-      <Button href="/services" variant="primary" size="lg">
-        View All Services
+  </div>
+</section>
+
+<!-- Donate -->
+<section class="section-padding bg-white">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto text-center">
+      <span
+        class="w-14 h-14 bg-accent-50 border-2 border-accent-200 rounded-sm inline-flex items-center justify-center mb-6"
+      >
+        <Heart class="w-6 h-6 text-accent-600" />
+      </span>
+
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-primary-900 mb-5 text-balance">
+        Do not give me money.
+      </h2>
+
+      <p class="text-lg text-neutral-600 leading-relaxed mb-8">
+        There is nothing to fund and no legal way for me to take it. If the website moved you to
+        spend money anyway, there is a much better place for it.
+      </p>
+
+      <Button href="/donate" variant="accent" size="lg">
+        Give to St. Jude instead
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>
     </div>
   </div>
 </section>
 
-<!-- Recognition & Impact Section -->
-<section class="section-padding bg-white">
+<!-- Follow -->
+<section class="py-14 bg-cream-100 border-t border-cream-300">
   <div class="container-custom">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-        Recognition & Real-World Impact
-      </h2>
-      <p class="text-xl text-neutral-600">
-        Proven track record of delivering solutions that make headlines and save lives
-      </p>
-    </div>
-    
-    <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {#each recognition as item}
-        <div class="card p-8 hover:shadow-xl transition-all duration-300">
-          <div class="mb-4">
-            <div class="text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full inline-block mb-2">
-              {item.publication}
-            </div>
-            <h3 class="text-xl font-semibold text-neutral-900">
-              {item.title}
-            </h3>
-          </div>
-          
-          <p class="text-neutral-600 mb-4">
-            {item.description}
-          </p>
-          
-          <blockquote class="text-sm text-neutral-700 italic border-l-4 border-primary-200 pl-4 mb-4">
-            "{item.quote}"
-          </blockquote>
-          
-          {#if item.link !== '#'}
-            <a 
-              href={item.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-primary-600 hover:text-primary-700 text-sm font-medium inline-flex items-center"
-            >
-              Read Full Article
-              <ArrowRight class="ml-1 h-4 w-4" />
-            </a>
-          {/if}
-        </div>
-      {/each}
-    </div>
-    
-    <!-- Impact Metrics -->
-    <div class="mt-16 bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-8">
-      <div class="text-center mb-8">
-        <h3 class="text-2xl font-bold text-neutral-900 mb-2">
-          Quantified Impact from Featured Project
-        </h3>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-primary-900 mb-2">
+          The campaign is mostly on your phone.
+        </h2>
         <p class="text-neutral-600">
-          Baltimore City Health Department Emergency Response System
+          That is where the thinking gets done. The website is for the follow-up questions.
         </p>
       </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">500+</div>
-          <div class="text-sm text-neutral-600">Senior Facilities Connected</div>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">8 hrs</div>
-          <div class="text-sm text-neutral-600">Daily Time Saved</div>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">24/7</div>
-          <div class="text-sm text-neutral-600">Emergency Response</div>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">$0</div>
-          <div class="text-sm text-neutral-600">Cost to City (Pro Bono)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- CTA Section -->
-<section class="section-padding gradient-primary text-white">
-  <div class="container-custom text-center">
-    <h2 class="text-3xl md:text-4xl font-bold mb-6">
-      Ready to Transform Your Technology Strategy?
-    </h2>
-    
-    <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-      Get a free technical assessment and discover how strategic technology decisions can drive your business forward.
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
-        Schedule Free Consultation
-        <ArrowRight class="ml-2 h-5 w-5" />
-      </Button>
+      <div class="flex items-center gap-3 shrink-0">
+        {#each socialLinks as social (social.name)}
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-white border border-neutral-300 text-primary-800 hover:text-accent-700 hover:border-accent-400 transition-colors rounded-sm"
+            aria-label={social.name}
+          >
+            <svelte:component this={social.icon} class="h-6 w-6" />
+          </a>
+        {/each}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Hero gradient animation */
-  .hero-gradient {
-    background: linear-gradient(45deg, 
-      #1e40af, 
-      #1d4ed8, 
-      #2563eb, 
-      #3b82f6,
-      #1e40af,
-      #1d4ed8
-    );
+  /* Slow navy drift — same treatment as the old hero, new palette */
+  .hero-field {
+    background: linear-gradient(135deg, #060e21, #0b1733, #14234a, #1d3261, #0b1733);
     background-size: 300% 300%;
-    animation: gradientShift 20s ease infinite;
-  }
-  
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    animation: gradientShift 24s ease infinite;
   }
 
-  /* Custom animations for the hero section */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  
+
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  /* Faster code rain animation */
-  @keyframes codeRain {
-    0% { 
-      transform: translateY(-20vh) rotate(0deg);
+    from {
       opacity: 0;
+      transform: translateY(30px);
     }
-    5% {
+    to {
       opacity: 1;
-    }
-    95% {
-      opacity: 1;
-    }
-    100% { 
-      transform: translateY(120vh) rotate(2deg);
-      opacity: 0;
+      transform: translateY(0);
     }
   }
-  
+
+  /* `both` matters: the delayed elements would otherwise render fully opaque,
+     then snap to invisible when their delay elapsed. */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.6s ease-out both;
   }
-  
+
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.6s ease-out both;
   }
-  
-  .code-rain {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-  
-  .code-line {
-    position: absolute;
-    top: -10%;
-    white-space: nowrap;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
-    font-size: 13px;
-    animation: codeRain 15s linear infinite; /* Faster 15s instead of 25s */
-    transform-origin: center;
-  }
-  
-  /* Terminal-like color classes */
-  .code-line .command {
-    color: #50FA7B; /* Bright green for commands */
-    text-shadow: 0 0 5px rgba(80, 250, 123, 0.3);
-  }
-  
-  .code-line .comment {
-    color: #6272A4; /* Muted blue-gray for comments */
-    font-style: italic;
-  }
-  
-  .code-line .function {
-    color: #8BE9FD; /* Cyan for functions */
-    text-shadow: 0 0 5px rgba(139, 233, 253, 0.2);
-  }
-  
-  .code-line .variable {
-    color: #F8F8F2; /* White for variables */
-  }
-  
-  .code-line .success {
-    color: #50FA7B; /* Green for success messages */
-    text-shadow: 0 0 8px rgba(80, 250, 123, 0.4);
-  }
-  
-  .code-line .error {
-    color: #FF5555; /* Red for errors */
-    text-shadow: 0 0 8px rgba(255, 85, 85, 0.4);
-  }
-  
-  .code-line span {
-    background: rgba(40, 42, 54, 0.7); /* Dark terminal background */
-    padding: 3px 8px;
-    border-radius: 3px;
-    border-left: 2px solid rgba(80, 250, 123, 0.6);
-    backdrop-filter: blur(1px);
-  }
-  
-  /* Mobile optimization */
+
   @media (max-width: 768px) {
-    .hero-gradient {
-      /* Simplified gradient for mobile */
-      background: linear-gradient(135deg, #1e40af, #2563eb);
+    .hero-field {
+      background: linear-gradient(135deg, #0b1733, #1d3261);
       animation: none;
-    }
-    
-    .code-line {
-      display: none !important; /* Extra safety for mobile */
     }
   }
-  
-  /* Prefers reduced motion accessibility */
+
   @media (prefers-reduced-motion: reduce) {
-    .code-line {
-      animation: none;
-      display: none;
-    }
-    
-    .hero-gradient {
+    .hero-field {
       animation: none;
     }
-    
+
     .animate-fade-in,
     .animate-slide-up {
       animation: none;

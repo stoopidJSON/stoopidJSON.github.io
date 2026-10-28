@@ -6,75 +6,117 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    font-feature-settings: 'rlig' 1, 'calt' 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
 }
 
 @layer components {
   /* Button components for consistent CTAs */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-600 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-800 border border-transparent rounded-sm shadow-sm hover:bg-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 transition-colors duration-200;
   }
-  
+
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-700 bg-primary-50 border border-primary-200 rounded-lg shadow-sm hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-800 bg-white border border-primary-200 rounded-sm shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 transition-colors duration-200;
   }
-  
+
   .btn-accent {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-accent-600 border border-transparent rounded-lg shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-accent-600 border border-transparent rounded-sm shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 transition-colors duration-200;
   }
-  
+
   /* Section padding for consistent spacing */
   .section-padding {
     @apply py-16 lg:py-24;
   }
-  
+
   /* Container for consistent max-width */
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
-  /* Gradient backgrounds for modern appeal */
+
+  /* Gradient backgrounds */
   .gradient-primary {
-    @apply bg-gradient-to-br from-primary-600 to-primary-800;
+    @apply bg-gradient-to-br from-primary-800 to-primary-950;
   }
-  
+
   .gradient-neutral {
-    @apply bg-gradient-to-br from-neutral-50 to-neutral-100;
+    @apply bg-gradient-to-br from-cream-50 to-cream-200;
   }
-  
+
   /* Card component for consistent styling */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-neutral-200 hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white rounded-sm shadow-sm border border-neutral-200 hover:shadow-md hover:border-primary-200 transition-all duration-300;
   }
-  
-  /* Text gradients for headings */
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+
+  /* Small-caps label, for eyebrows and section kickers */
+  .eyebrow {
+    @apply font-stamp text-xs uppercase tracking-[0.2em] text-primary-600;
   }
-  
-  /* Focus styles for accessibility */
-  .focus-visible {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+
+  /* Subline of the ANTON lockup. Justified to both edges so it ends up exactly
+     as wide as the wordmark above it, whatever size that is. Relies on the
+     parent being width: fit-content, so the wordmark sets the width. */
+  .wordmark-kicker {
+    @apply font-stamp uppercase leading-none;
+    letter-spacing: 0.04em;
+    text-align: justify;
+    text-align-last: justify;
+    /* Spread the slack between letters rather than piling it into the four
+       word gaps, so the subline reads as evenly tracked small caps. */
+    text-justify: inter-character;
+  }
+
+  /* The thin double hairline that reads as "official document" */
+  .rule-double {
+    height: 0;
+    border: 0;
+    border-top: 4px double theme('colors.primary.700');
+  }
+
+  /* Same, on dark backgrounds */
+  .rule-double-light {
+    height: 0;
+    border: 0;
+    border-top: 4px double theme('colors.primary.400');
+  }
+
+  /* Rotated outlined label, e.g. RESIGNATION TRIGGER */
+  .stamp {
+    @apply inline-flex items-center font-stamp text-[0.625rem] sm:text-xs uppercase tracking-[0.18em] px-2.5 py-1 border-2 border-accent-600 text-accent-700 rounded-sm;
+  }
+
+  .stamp-tilt {
+    transform: rotate(-2deg);
+  }
+
+  /* Disclaimers and legal fine print */
+  .fine-print {
+    @apply text-xs leading-relaxed text-neutral-400;
+  }
+
+  /* Oversized plank numeral */
+  .plank-numeral {
+    @apply font-display text-5xl leading-none text-primary-200;
   }
 }
 
 @layer utilities {
-  /* Custom utilities for specific use cases */
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .animation-delay-200 {
     animation-delay: 200ms;
   }
-  
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
-  
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }

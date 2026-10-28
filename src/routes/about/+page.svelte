@@ -1,315 +1,222 @@
 <script lang="ts">
-  import { ArrowRight, Award, Code, Globe, Users, Lightbulb, TrendingUp, Building } from 'lucide-svelte';
+  import { ArrowRight } from 'lucide-svelte';
   import Button from '$lib/components/Button.svelte';
+  import { planks } from '$lib/content/platform';
 </script>
 
 <svelte:head>
-  <title>About Jason Anton | The Digital Janitor</title>
-  <meta name="description" content="From high school dropout to pioneering AI systems at CMS. Meet Jason Anton - The Digital Janitor who cleans up digital messes and builds solutions that work." />
-  <meta name="keywords" content="Jason Anton, Digital Janitor, technical consultant, CMS modernization, AI implementation, software developer" />
+  <title>What Is This? — Anton</title>
+  <meta
+    name="description"
+    content="This is a satirical exploratory presidential campaign run by Jason Anton, a software engineer in Maryland. There is no committee, no filing, and no money."
+  />
 </svelte:head>
 
-<!-- Hero Section -->
-<section class="relative section-padding overflow-hidden">
-  <!-- Background Image with Gradient Overlay -->
+<!-- Masthead over the family photo -->
+<section class="relative overflow-hidden">
   <div class="absolute inset-0">
-    <!-- Replace 'your-family-photo.jpg' with the actual path to your image -->
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/jason-family-walking.jpeg');"></div>
-    <!-- Gradient overlay for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-br from-neutral-900/70 via-neutral-800/60 to-neutral-900/80"></div>
-    <!-- Additional overlay for better text contrast -->
-    <div class="absolute inset-0 bg-black/20"></div>
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/jason-family-walking.jpeg');"
+    ></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-primary-950/90 via-primary-900/80 to-primary-950/95"
+    ></div>
   </div>
-  
-  <!-- Content -->
-  <div class="relative container-custom">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg">
-        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 6.343a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464a1 1 0 10-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.477.859h4z"/>
-        </svg>
-      </div>
-      
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
-        Hi, I'm Jason Anton
+
+  <div class="relative container-custom pt-14 pb-16 lg:pt-20 lg:pb-24">
+    <div class="max-w-3xl text-white">
+      <div class="eyebrow text-primary-300 mb-4">About</div>
+      <h1
+        class="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance"
+      >
+        What is this?
       </h1>
-      
-      <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow">
-        Most consultants specialize. I clean up digital messes.
-      </p>
-      
-      <p class="text-lg text-white/85 max-w-3xl mx-auto leading-relaxed drop-shadow">
-        For 15+ years, I've been the person organizations call when their technology isn't working, their systems are failing, or they need someone who can build what others say is impossible. They call me "The Digital Janitor" because I'll fix, clean, or build whatever needs doing.
+      <div class="rule-double-light my-6 max-w-sm"></div>
+      <p class="text-lg lg:text-xl text-primary-100 leading-relaxed">
+        It's a joke. It is also, in a few places, not a joke, and I have not been able to get the
+        ratio to resolve.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Origin Story -->
-<section class="section-padding gradient-neutral">
+<!-- The honest part -->
+<section class="py-16 lg:py-20 bg-white">
   <div class="container-custom">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-8 text-center">
-        An Unlikely Beginning
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Plainly</div>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-primary-900 mb-6 text-balance">
+        I am not running for president.
       </h2>
-      
-      <div class="prose prose-lg max-w-none text-neutral-700">
-        <p class="text-xl leading-relaxed mb-6">
-          I'm not your typical consultant. I dropped out of high school to chase dreams of being a rock star, got close enough to open for an <em>MTV Music Video Award</em> winning artist, then an unfortunate incident outside of my control ended that chapter of my life.
+      <div class="rule-double max-w-xs mb-8"></div>
+
+      <div class="space-y-6 text-lg text-neutral-700 leading-relaxed">
+        <p>
+          There is no exploratory committee. Nothing has been filed with the Federal Election
+          Commission. There is no staff, no money, no donations accepted, and no plan. What there
+          is: a regular dude, five things he thinks about more than is reasonable, a phone, and this
+          website.
         </p>
-        
-        <p class="leading-relaxed mb-6">
-          By 2007, I was waiting tables at Carrabas, homeless with a newborn daughter, spending my last dollars on a plane ticket to a tech job fair in DC. I had taught myself to code as a hobby in high school, and I knew technology was my way forward. That desperation became determination.
+        <p>
+          The videos are satire. This site is satire. Nothing on it should be read as a factual
+          claim about any real person, and the one plank that concerns a real criminal case is
+          deliberately written as a demand for a process rather than an accusation against anybody —
+          because I don't know who is in those files, and neither does anyone else arguing about it
+          online.
         </p>
-        
-        <p class="leading-relaxed mb-6">
-          What followed was a career that took me from database programming intern to pioneering AI systems at CMS, from building solutions for Fortune 500 companies to negotiating cybersecurity agreements with foreign government officials. Along the way, I learned something crucial: most problems aren't technical problems—they're pattern recognition problems.
-        </p>
-        
-        <p class="leading-relaxed">
-          Today, my first-born is a D1 lacrosse player at Wofford College studying medicine. That journey from homelessness to helping her achieve her dreams taught me that impossible is just a starting point...also my youngest wants to be an astronaut, pit-fighter, or tattoo artist ¯\_(ツ)_/¯
+        <p>
+          The part that isn't a joke is that I would genuinely like four of these five things to
+          happen, and I think the fifth one is a good way to ask a serious question about who pays
+          for the data centers.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Philosophy & Approach -->
-<section class="section-padding bg-white">
+<!-- Who -->
+<section class="py-16 lg:py-20 bg-cream-50 border-y border-cream-300">
   <div class="container-custom">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">
-          How I Solve Problems Others Can't
-        </h2>
-        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-          Most consultants bring predetermined solutions. I bring pattern recognition, technical breadth, and a willingness to build whatever actually works.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <TrendingUp class="w-8 h-8 text-primary-600" />
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-4">Pattern Recognition</h3>
-          <p class="text-neutral-600">
-            Most SAAS products solve 90% of what you need. That last 10% will take longer to configure than building from scratch. I see these patterns immediately.
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <Code class="w-8 h-8 text-primary-600" />
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-4">Full-Stack Approach</h3>
-          <p class="text-neutral-600">
-            Front-end, back-end, DevOps, security—I handle it all. Like a janitor, I don't care what needs fixing. I just fix it.
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-6">
-            <Lightbulb class="w-8 h-8 text-primary-600" />
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-4">Solution-First Thinking</h3>
-          <p class="text-neutral-600">
-            I don't fall in love with technologies. I fall in love with solving problems. Whatever works, works.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Major Achievements -->
-<section class="section-padding gradient-neutral">
-  <div class="container-custom">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">
-          Milestones That Matter
-        </h2>
-        <p class="text-xl text-neutral-600">
-          Every project taught me something new about solving impossible problems
-        </p>
-      </div>
-      
-      <div class="space-y-8">
-        <!-- CMS Breakthrough -->
-        <div class="card p-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-primary-600 text-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <Building class="w-6 h-6" />
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-neutral-900 mb-2">
-                First CMS System Modernization (2019)
-              </h3>
-              <p class="text-neutral-600 mb-4">
-                Led a successful migration from COBOL to Java at CMS, processing $190B+ in Medicare claims. Previous attempts in the 90s to modernize the same service failed and cost taxpayers millions. Our success spawned an entire division of modernization projects.
-              </p>
-              <div class="text-sm text-primary-600 font-medium">
-                Impact: Modernized systems processing billions in healthcare transactions
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pandemic Response -->
-        <div class="card p-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <Users class="w-6 h-6" />
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-neutral-900 mb-2">
-                Baltimore Emergency Response System (2020)
-              </h3>
-              <p class="text-neutral-600 mb-4">
-                Built the system that replaced 500+ daily phone calls with automated communication during the pandemic. Featured in Baltimore Sun and earned recognition as Technical.ly's RealLIST Engineer of 2020.
-              </p>
-              <div class="text-sm text-green-600 font-medium">
-                Impact: Saved hundreds of hours daily, served millions of citizens
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Record Speed Development -->
-        <div class="card p-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-accent-600 text-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <TrendingUp class="w-6 h-6" />
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-neutral-900 mb-2">
-                Securing Electronic Medical Records (2020)
-              </h3>
-              <p class="text-neutral-600 mb-4">
-                When CMS received a mandate to stop accepting faxed medical records by month's end, I built MRDUCS (Medical Record Document Upload and Copy System) and hit the seemingly impossible deadline. Possibly the fastest federal system delivery in CMS history.
-              </p>
-              <div class="text-sm text-accent-600 font-medium">
-                Impact: $5M+ taxpayer savings to date, system still in production
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- AI Innovation -->
-        <div class="card p-8">
-          <div class="flex items-start space-x-4">
-            <div class="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-              <Lightbulb class="w-6 h-6" />
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-neutral-900 mb-2">
-                CMS AI Platform Leadership (2024)
-              </h3>
-              <p class="text-neutral-600 mb-4">
-                Guided implementation of CMS's first AI platform for data scientists on the $24M SEAS-IT contract, while simultaneously building my own AI startup <em>ConversaDocs</em>.
-              </p>
-              <div class="text-sm text-purple-600 font-medium">
-                Impact: Pioneered enterprise AI adoption at federal scale
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Current Focus -->
-<section class="section-padding bg-white">
-  <div class="container-custom">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-6">
-        What I'm Building Now
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">The candidate</div>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-primary-900 mb-6 text-balance">
+        Jason Anton
       </h2>
-      
-      <p class="text-xl text-neutral-600 mb-8 leading-relaxed">
-        I'm currently building <a href="https://conversadocs.ai" style="color: #13B2CE;">ConversaDocs</a>, an AI platform that goes far beyond typical chatbots. Using semantic pairing and probabilistic function execution—an evolution of my "anything-to-anything" approach from the McAfee days—our system can understand context, execute complex workflows, and deliver intelligent responses while simultaneously planning and executing background tasks.
-      </p>
-      
-      <div class="bg-primary-50 rounded-2xl p-8 mb-8">
-        <h3 class="text-xl font-semibold text-neutral-900 mb-4">
-          Why This Combination Works
-        </h3>
-        <p class="text-neutral-700 leading-relaxed">
-          Building an AI startup while consulting isn't just manageable—it's synergistic. My hands-on AI development keeps me at the absolute cutting edge of what's possible, while my consulting work ensures I understand real-world business challenges. You get someone who isn't just talking about AI—I'm building it.
+      <div class="rule-double max-w-xs mb-8"></div>
+
+      <!-- Nominative clarification -->
+      <aside
+        class="bg-white border border-neutral-200 border-l-4 border-l-accent-600 p-6 lg:p-7 mb-10"
+      >
+        <div class="eyebrow mb-3">Nominative clarification</div>
+        <p class="text-lg text-neutral-700 leading-relaxed mb-4">
+          My first name is Jason. <strong class="text-primary-900">Anton is my last name.</strong>
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed">
+          I am a firstie-firstie: both of my names are, under ordinary circumstances, first names.
+          Campaign signage traditionally uses the last name, which is why every page on this website
+          says ANTON in large letters, and which is why a reliable share of people come away
+          convinced they have just encountered a man called Anton. They have not. They have
+          encountered Jason. The Anton is the one at the end.
+        </p>
+      </aside>
+
+      <div class="space-y-6 text-lg text-neutral-700 leading-relaxed">
+        <p>
+          I dropped out of high school to be a rock star, got close enough to open for an artist who
+          had won an MTV Video Music Award, and then had that chapter end for reasons outside my
+          control. I went into software instead and have been doing it for more than fifteen years.
+          I still play drums though.
+        </p>
+        <p>
+          Most of that work has been unglamorous and public-facing: federal health systems,
+          government modernization, the first AI platform for data scientists at the Centers for
+          Medicare &amp; Medicaid Services. During the pandemic I was the primary developer on a
+          Code for Baltimore project that let the Baltimore City Health Department reach five
+          hundred senior facilities at once, which got me named to Technical.ly's RealLIST Engineers
+          in 2020.
+        </p>
+        <p>
+          I live in the mid-Atlantic area with my family. The photo at the top of this page is us,
+          walking. It is doing exactly the job it would be doing on a real campaign site, and I want
+          to be upfront that I know that.
+        </p>
+        <p>
+          I am exactly as qualified to be president as the premise of this website suggests, which
+          is to say the planks should be evaluated on their own merits and not on mine.
         </p>
       </div>
-      
-      <div class="text-lg text-neutral-600 mb-8">
-        <strong>The result?</strong> Clients get access to someone who's solving tomorrow's problems today, while staying grounded in practical solutions that actually work.
-      </div>
     </div>
   </div>
 </section>
 
-<!-- Recognition -->
-<section class="section-padding gradient-neutral">
+<!-- Why these five -->
+<section class="py-16 lg:py-20 bg-white">
   <div class="container-custom">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-neutral-900 mb-12">
-        Recognition & Impact
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">The selection process</div>
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-primary-900 mb-6 text-balance">
+        Why these five
       </h2>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <Award class="w-12 h-12 text-accent-500 mx-auto mb-4" />
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-            RealLIST Engineer 2020
-          </h3>
-          <p class="text-neutral-600 text-sm">
-            Technical.ly Magazine recognition alongside Johns Hopkins doctors
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <Globe class="w-12 h-12 text-primary-500 mx-auto mb-4" />
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-            International Experience
-          </h3>
-          <p class="text-neutral-600 text-sm">
-            Negotiated cybersecurity solutions with Malian government officials
-          </p>
-        </div>
-        
-        <div class="text-center">
-          <TrendingUp class="w-12 h-12 text-green-500 mx-auto mb-4" />
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">
-            Measurable Impact
-          </h3>
-          <p class="text-neutral-600 text-sm">
-            $5M+ taxpayer savings, systems serving millions of Americans
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="rule-double max-w-xs mb-8"></div>
 
-<!-- CTA Section -->
-<section class="section-padding gradient-primary text-white">
-  <div class="container-custom text-center">
-    <h2 class="text-3xl md:text-4xl font-bold mb-6">
-      Ready to Clean Up Your Digital Mess?
-    </h2>
-    <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-      Whether you need someone to modernize legacy systems, implement AI solutions, or just figure out why nothing seems to work the way it should—let's talk.
-    </p>
-    
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="https://calendly.com/stoopidjson/technical-assessment" variant="accent" size="lg">
-        Schedule Free Consultation
+      <div class="space-y-6 text-lg text-neutral-700 leading-relaxed mb-10">
+        <p>
+          They are the things I will not shut up about. That's the whole methodology. There was no
+          polling, no focus group, and no attempt to build a coalition.
+        </p>
+        <p>
+          What they have in common is that each one is either obviously correct and somehow never
+          done, or obviously absurd and pointed at something that is obviously correct. Two of them
+          are small enough to finish, which is why those two are the ones that end the presidency.
+        </p>
+      </div>
+
+      <ol class="space-y-3 mb-10">
+        {#each planks as plank (plank.slug)}
+          <li class="flex gap-4 items-baseline">
+            <span class="font-stamp text-sm text-neutral-400 tabular-nums">{plank.number}.</span>
+            <a
+              href="/platform/{plank.slug}"
+              class="font-display text-lg text-primary-900 hover:text-accent-700 transition-colors"
+            >
+              {plank.title}
+            </a>
+            {#if plank.resignationTrigger}
+              <span class="font-stamp text-[0.625rem] uppercase tracking-wider text-accent-700"
+                >ends it</span
+              >
+            {/if}
+          </li>
+        {/each}
+      </ol>
+
+      <Button href="/platform" variant="primary" size="lg">
+        Read the platform
         <ArrowRight class="ml-2 h-5 w-5" />
       </Button>
-      
-      <Button href="/case-studies" variant="secondary" size="lg">
-        See My Work
-      </Button>
+    </div>
+  </div>
+</section>
+
+<!-- Housekeeping -->
+<section class="py-14 bg-primary-950 text-primary-200">
+  <div class="container-custom">
+    <div class="max-w-3xl">
+      <h2 class="eyebrow text-primary-300 mb-6">Housekeeping</h2>
+      <dl class="space-y-5">
+        <div>
+          <dt class="font-display text-base font-bold text-white mb-1">Are you going to run?</dt>
+          <dd class="leading-relaxed">No. Maybe. Probably not.</dd>
+        </div>
+        <div>
+          <dt class="font-display text-base font-bold text-white mb-1">Can I give you money?</dt>
+          <dd class="leading-relaxed">
+            No, and there's nowhere to put it. <a
+              href="/donate"
+              class="underline hover:text-accent-400">Give it to St. Jude</a
+            >.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-display text-base font-bold text-white mb-1">Can I use the clips?</dt>
+          <dd class="leading-relaxed">
+            Yes. Repost them, stitch them, dunk on them. That's what they're for.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-display text-base font-bold text-white mb-1">
+            I'm named in something on this site and I'd like that fixed.
+          </dt>
+          <dd class="leading-relaxed">
+            No real person is named anywhere on this site except me. If you believe otherwise, email
+            <a href="mailto:jason@jasonanton.com" class="underline hover:text-accent-400"
+              >jason@jasonanton.com</a
+            > and I will fix it the same day.
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>

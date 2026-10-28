@@ -9,7 +9,9 @@ const config = {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      fallback: undefined,
+      // GitHub Pages serves 404.html for unknown paths, which gives retired
+      // URLs (the old /services, /case-studies, /insights) the styled error page.
+      fallback: '404.html',
       precompress: false,
       strict: true
     }),
@@ -17,7 +19,7 @@ const config = {
       $lib: './src/lib',
       $components: './src/lib/components',
       $types: './src/lib/types',
-      $utils: './src/lib/utils',
+      $utils: './src/lib/utils'
     }
   }
 };

@@ -1,194 +1,102 @@
 <script lang="ts">
-  import { Mail, Phone, MapPin, Linkedin, Instagram, Github, Calculator, Youtube } from 'lucide-svelte';
-  import type { NavigationItem, SocialLink } from '$types';
-  
+  import Wordmark from '$lib/components/Wordmark.svelte';
+  import { planks } from '$lib/content/platform';
+  import { socialLinks } from '$lib/content/socials';
+  import type { NavigationItem } from '$types';
+
   const currentYear = new Date().getFullYear();
-  
-  interface FooterNavigation {
-    services: NavigationItem[];
-    company: NavigationItem[];
-    resources: NavigationItem[];
-  }
-  
-  const footerNavigation: FooterNavigation = {
-    services: [
-      { name: 'Digital Transformation', href: '/services/digital-transformation' },
-      { name: 'AI/ML Implementation', href: '/services/ai-ml-implementation' },
-      { name: 'Fractional CTO', href: '/services/fractional-cto' },
-      { name: 'See All...', href: '/services' },
-    ],
-    company: [
-      { name: 'About', href: '/about' },
-      { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Insights', href: '/insights' },
-      { name: 'Contact', href: 'https://calendly.com/stoopidjson/technical-assessment' },
-    ],
-    resources: [
-      { name: 'ConversaDocs', href: 'https://conversadocs.ai' },
-      { name: 'Stoopid Website', href: 'https://stoopid.website' },
-    ],
-  };
-  
-  const socialLinks: SocialLink[] = [
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/stoopidjson/', icon: Linkedin },
-    { name: 'Instagram', href: 'https://www.instagram.com/stoopidtech/', icon: Instagram },
-    { name: 'GitHub', href: 'https://github.com/stoopidJSON', icon: Github },
-    { name: 'YouTube', href: 'https://www.youtube.com/@stoopidTech', icon: Youtube}
+
+  const campaignLinks: NavigationItem[] = [
+    { name: 'The Platform', href: '/platform' },
+    { name: 'The Resignation Clause', href: '/resign' },
+    { name: 'Press Room', href: '/press' },
+    { name: 'Give to St. Jude', href: '/donate' },
+    { name: 'What is this?', href: '/about' }
   ];
 </script>
 
-<footer class="bg-neutral-900 text-white">
+<footer class="bg-primary-950 text-cream-100">
   <div class="container-custom">
     <div class="pt-16 pb-8">
-      <!-- Main Footer Content -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-        <!-- Company Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
+        <!-- Campaign -->
         <div class="lg:col-span-2">
-          <div class="flex items-center space-x-2 mb-4">
-            <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-              <img 
-                src="/logo.svg" 
-                alt="The Digital Janitor logo" 
-                class="w-5 h-5"
-              />
-            </div>
-            <span class="text-xl font-bold">The Digital Janitor</span>
-          </div>
-          <p class="text-neutral-300 mb-6 max-w-md">
-            Building, cleaning, and contributing to the digital mess with 15+ years of cross-functional expertise. 
-            Helping businesses and governments navigate complex technical challenges and implement strategic solutions.
+          <Wordmark size="lg" kickerClass="text-primary-300" />
+
+          <div class="rule-double-light my-6 max-w-xs"></div>
+
+          <p class="text-primary-100 mb-6 max-w-md leading-relaxed">
+            Five things that need to happen. Two of them, once finished, oblige the candidate to
+            resign. There is no committee, no consultant, and no money.
           </p>
-          
-          <!-- Contact Info -->
-          <div class="space-y-3">
-            <div class="flex items-center space-x-3 text-neutral-300">
-              <Mail class="h-5 w-5 text-primary-400" />
-              <span>jason@jasonanton.com</span>
-            </div>
-            <div class="flex items-center space-x-3 text-neutral-300">
-              <Phone class="h-5 w-5 text-primary-400" />
-              <span>+1 (410) 701-0140</span>
-            </div>
-            <div class="flex items-center space-x-3 text-neutral-300">
-              <MapPin class="h-5 w-5 text-primary-400" />
-              <span>Washington DC-Baltimore Area</span>
-            </div>
+
+          <!-- Follow -->
+          <div class="flex items-center space-x-3">
+            {#each socialLinks as social (social.name)}
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 border border-primary-700 text-primary-200 hover:text-white hover:border-accent-500 hover:bg-primary-900 transition-colors duration-200 rounded-sm"
+                aria-label={social.name}
+              >
+                <svelte:component this={social.icon} class="h-5 w-5" />
+              </a>
+            {/each}
           </div>
         </div>
-        
-        <!-- Services -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Services</h3>
+
+        <!-- Platform -->
+        <div class="lg:col-span-2">
+          <h3 class="eyebrow text-primary-300 mb-5">The Platform</h3>
           <ul class="space-y-3">
-            {#each footerNavigation.services as item}
-              <li>
-                <a 
-                  href={item.href} 
-                  class="text-neutral-300 hover:text-primary-400 transition-colors duration-200"
+            {#each planks as plank (plank.slug)}
+              <li class="flex gap-3">
+                <span class="font-stamp text-xs text-primary-500 pt-1 tabular-nums"
+                  >{plank.number}.</span
                 >
-                  {item.name}
+                <a
+                  href="/platform/{plank.slug}"
+                  class="text-primary-100 hover:text-accent-400 transition-colors duration-200"
+                >
+                  {plank.title}
                 </a>
               </li>
             {/each}
           </ul>
         </div>
-        
-        <!-- Company -->
+
+        <!-- Campaign links -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Information</h3>
+          <h3 class="eyebrow text-primary-300 mb-5">The Campaign</h3>
           <ul class="space-y-3">
-            {#each footerNavigation.company as item}
+            {#each campaignLinks as item (item.href)}
               <li>
-                <a 
-                  href={item.href} 
-                  class="text-neutral-300 hover:text-primary-400 transition-colors duration-200"
+                <a
+                  href={item.href}
+                  class="text-primary-100 hover:text-accent-400 transition-colors duration-200"
                 >
                   {item.name}
                 </a>
-              </li>
-            {/each}
-          </ul>
-        </div>
-        
-        <!-- Resources -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Resources</h3>
-          <ul class="space-y-3">
-            {#each footerNavigation.resources as item}
-              <li>
-                {#if item.href.startsWith('http')}
-                  <a 
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' || item.name === 'Stoopid Website' ? 'flex items-center space-x-2' : ''}"
-                  >
-                    {#if item.name === 'ConversaDocs'}
-                      <img 
-                        src="/conversadocs.png" 
-                        alt="ConversaDocs logo" 
-                        class="w-5 h-5"
-                      />
-                    {:else if item.name === 'ROI Calculators'}
-                      <Calculator class="h-4 w-4 text-primary-400" />
-                    {:else if item.name === 'Stoopid Website'}
-                      <img 
-                        src="/stoopid.png" 
-                        alt="Stoopid logo" 
-                        class="w-5 h-5"
-                      />
-                    {/if}
-                    <span>{item.name}</span>
-                  </a>
-                {:else}
-                  <a 
-                    href={item.href} 
-                    class="text-neutral-300 hover:text-primary-400 transition-colors duration-200 {item.name === 'ConversaDocs' || item.name === 'ROI Calculators' || item.name === 'Stoopid Website' ? 'flex items-center space-x-2' : ''}"
-                  >
-                    {#if item.name === 'ConversaDocs'}
-                      <img 
-                        src="/conversadocs.png" 
-                        alt="ConversaDocs logo" 
-                        class="w-5 h-5"
-                      />
-                    {:else if item.name === 'ROI Calculators'}
-                      <Calculator class="h-4 w-4 text-primary-400" />
-                    {:else if item.name === 'Stoopid Website'}
-                      <img 
-                        src="/stoopid.png" 
-                        alt="Stoopid logo" 
-                        class="w-5 h-5"
-                      />
-                    {/if}
-                    <span>{item.name}</span>
-                  </a>
-                {/if}
               </li>
             {/each}
           </ul>
         </div>
       </div>
     </div>
-    
+
     <!-- Bottom Bar -->
-    <div class="py-6 border-t border-neutral-800">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-        <div class="text-neutral-400 text-sm mb-4 md:mb-0">
-          © {currentYear} Stoopid Company, LLC. All rights reserved.
-        </div>
-        
-        <!-- Social Links -->
-        <div class="flex space-x-4">
-          {#each socialLinks as social}
-            <a
-              href={social.href}
-              class="text-neutral-400 hover:text-primary-400 transition-colors duration-200"
-              aria-label={social.name}
-            >
-              <svelte:component this={social.icon} class="h-5 w-5" />
-            </a>
-          {/each}
-        </div>
+    <div class="py-8 border-t border-primary-800">
+      <p class="fine-print text-primary-400 max-w-3xl mb-4">
+        <strong class="text-primary-300 font-semibold">Paid for by nobody.</strong> This is a
+        satirical exploratory campaign. It is not a registered candidacy or political committee, it
+        has not filed with the Federal Election Commission, and it does not solicit, accept, or have
+        any way to receive donations. Nothing here should be read as a statement of fact about any
+        real person.
+        <a href="/about" class="underline hover:text-accent-400">What is this?</a>
+      </p>
+      <div class="fine-print text-primary-500">
+        © {currentYear} Jason Anton. Satire.
       </div>
     </div>
   </div>
